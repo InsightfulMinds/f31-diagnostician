@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The F31 Diagnostician</title>
-<meta name="description" content="A pipeline that reads a rejected NIH F31 fellowship application and explains why it scored the way it did. Built for a competition, never submitted, posted for fun.">
+<meta name="description" content="A pipeline that reads a rejected NIH F31 fellowship application and its reviewer critique, names the failure mode that sank it, and cites the lines that prove it.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -33,8 +33,15 @@
              letter-spacing:-0.015em; }
   .hero h1 em { font-style:normal; color:var(--gold-deep); }
   .lede { font-size:1.15rem; max-width:44rem; color:var(--dim); }
-  .confess { margin-top:1.4rem; border-left:4px solid var(--gold); background:var(--wash);
-             padding:.85rem 1.1rem; max-width:44rem; font-size:1rem; }
+  .hits { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1.5rem; }
+  .hits span { background:var(--navy); color:#fff; font-weight:600; font-size:.82rem;
+               padding:.4rem .8rem; border-radius:999px; }
+  .hits span::before { content:"\2192\00a0"; color:var(--gold); }
+
+  .why { display:flex; align-items:baseline; gap:.7rem; background:var(--navy); color:#fff;
+         padding:.65rem .9rem; margin-top:1.3rem; max-width:46rem; font-size:.94rem; }
+  .why b { color:var(--gold); font-size:.72rem; letter-spacing:.09em; text-transform:uppercase;
+           white-space:nowrap; font-family:"Source Sans 3", sans-serif; }
 
   h2 { font-size:1.55rem; margin-bottom:.9rem; letter-spacing:-0.01em; }
   h2 .no { color:var(--gold-deep); font-size:.95rem; vertical-align:.45em; margin-right:.4rem;
@@ -106,6 +113,8 @@
   .repo-cta { margin-top:1.6rem; display:inline-block; background:var(--navy); color:#fff;
               padding:.8rem 1.4rem; font-weight:600; text-decoration:none; }
   .repo-cta:hover { background:var(--navy-deep); color:var(--gold); }
+  .repo-cta.alt { background:var(--white); color:var(--navy); border:2px solid var(--navy); margin-left:.6rem; }
+  .repo-cta.alt:hover { color:var(--gold-deep); border-color:var(--gold-deep); }
   .looklist { margin:1rem 0 0 1.2rem; }
   .looklist li { margin:.35rem 0; }
   code { background:var(--wash); border:1px solid var(--line); padding:.1rem .4rem;
@@ -127,16 +136,22 @@
 <main>
 
 <header class="hero">
-  <span class="kicker">Posted for fun</span>
+  <span class="kicker">Grant diagnostics &middot; NIH F31</span>
   <h1>A machine that explains <em>why the grant didn't get funded</em></h1>
-  <p class="lede">This is the write-up for a small system I built: it reads a rejected NIH F31 fellowship application next to its reviewer critique and works out which known failure mode sank it. Every piece of it is plain text and one shell script.</p>
-  <p class="confess">Full honesty: this was built for a competition with a hard 11:59 PM deadline. It finished, it passed its own 78-check verification gate, and then I didn't get around to submitting it. So it lives here now.</p>
+  <p class="lede">Feed it a rejected NIH F31 fellowship application and its reviewer critique. It names the failure mode that sank the application and cites the exact lines that prove it. Plain text and one shell script, verifiable end to end.</p>
+  <div class="hits">
+    <span>Names the failure mode</span>
+    <span>Cites the source line</span>
+    <span>Refuses to guess</span>
+    <span>78-check verified</span>
+  </div>
 </header>
 
 <section class="prose">
   <h2><span class="no">01</span>First, what is an F31?</h2>
   <p>The F31 is a fellowship from the National Institutes of Health that pays for a PhD student's dissertation research, usually two to three years of stipend and tuition support. Around 1,800 of them are active at any time, and the top ten universities hold about 30% of those awards.</p>
   <p>Applying is a paperwork gauntlet with strict page limits, and a panel of reviewers scores the result. Most applications are not funded. When yours isn't, you get back a critique document and a score, and it is on you to figure out what actually went wrong. That gap is what this project attacks.</p>
+  <div class="why"><b>Why it matters</b><span>Most F31s are not funded, and the critique document is the only feedback that comes back. Decoding it correctly is the entire next move.</span></div>
 </section>
 
 <section>
@@ -149,6 +164,7 @@
     <li><div><b>Verify.</b> Checks every match against the source text. No citation, no match.</div></li>
     <li><div><b>Diagnose.</b> Writes the verdict in plain language. If the critique matches nothing in the table, it says so and refuses to invent a cause. That refusal path has its own test case.</div></li>
   </ol>
+  <div class="why"><b>Why it matters</b><span>A dense critique becomes a named, cited cause instead of a guess. Every claim traces back to a line you can check.</span></div>
 </section>
 
 <section>
@@ -171,6 +187,7 @@
     </table>
     <div class="note">Biosketches are the NIH-format CV. Limits per the current NIH fellowship application guide.</div>
   </div>
+  <div class="why"><b>Why it matters</b><span>Hard limits mean every reviewer complaint points at a specific, bounded document. That is what makes automated diagnosis tractable at all.</span></div>
 </section>
 
 <section>
@@ -184,6 +201,7 @@
   <div class="scorepath">
     <b>From scores to a decision:</b> discussed applications get an overall impact score from 10 (best) to 90, which converts to a percentile against the study section's recent history. Each NIH institute funds applications inside its payline, which for fellowships has typically run somewhere in the 15th to 25th percentile band. Outside the payline is the outcome this tool exists to explain.
   </div>
+  <div class="why"><b>Why it matters</b><span>The rubric is encoded and machine-validated, so the diagnosis speaks in the same three factors the reviewers scored.</span></div>
 </section>
 
 <section class="prose">
@@ -241,13 +259,16 @@
 
   <p>The nearby pivots, in rough order of distance: the other fellowships (F30, F32, F33) are a config change, since they share the 2025 rubric. The K series and training grants (T32, T35, K12) need a new failure-mode table but keep the same diagnosis shape: bounded documents, a written critique, a payline. Past NIH, any scored funding application fits, from NSF proposals to foundation grants to SBIR submissions. Wherever a rejection arrives with a written critique and a rubric, the intake-extract-match-verify-diagnose chain applies, and the refusal path matters more, since new failure-mode tables start out thin.</p>
   <p>That's the value anchor: not an F31 gadget, but a grant-diagnostics pattern, proven first at the F31 handoff and pointed at the rest of the relay.</p>
+  <div class="why"><b>Why it matters</b><span>One diagnostic pattern covers every scored funding mechanism. The F31 is the first instance, not the ceiling.</span></div>
 </section>
 
 <section class="prose">
   <h2><span class="no">06</span>Why I think the build is interesting</h2>
   <p>There is no framework here. The whole system is markdown contracts, JSON with a self-declared schema, and one verification gate in shell. A fresh agent dropped into the repo reads a 42-line entry file and knows where it is and what to do next. That was tested cold, and the transcript is in the repo.</p>
   <p>The gate runs 78 checks, and it has a selftest that injects four deliberate defects to prove the gate can still fail. During the build, that selftest caught a real bug in the gate itself: a grep flag that BSD grep silently ignores, which had one check passing on a tree that should have failed. A gate that polices itself earned some trust that day.</p>
+  <div class="why"><b>Why it matters</b><span>You do not have to trust the diagnosis. You can run the gate and watch it try to fail.</span></div>
   <a class="repo-cta" href="https://github.com/InsightfulMinds/f31-diagnostician">Read the source on GitHub</a>
+  <a class="repo-cta alt" href="prompts.html">Image prompt kit for the diagrams</a>
   <ul class="looklist">
     <li><code>README.md</code> for how to run it, including the economics of doing so.</li>
     <li><code>verify-evidence.txt</code> for the full gate output and cold walk-test transcript.</li>

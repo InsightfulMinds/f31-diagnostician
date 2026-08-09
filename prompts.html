@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Image prompt kit &middot; The F31 Diagnostician</title>
+<meta name="description" content="Copy-paste Gemini prompts for every diagram asset on the F31 Diagnostician page, with a shared style block so the set renders as one system.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:#1c2d5e; --navy-deep:#15234b; --gold:#e8a820; --gold-deep:#c78e12;
+    --ink:#1d2333; --dim:#5a6376; --line:#e5e8ef; --wash:#f7f8fb; --white:#ffffff;
+  }
+  * { box-sizing:border-box; margin:0; }
+  body { background:var(--white); color:var(--ink);
+         font:17px/1.65 "Source Sans 3", -apple-system, Segoe UI, sans-serif; }
+  h1,h2,h3 { font-family:"Fraunces", Georgia, serif; color:var(--navy); }
+  a { color:var(--navy); text-decoration-color:var(--gold); text-underline-offset:3px; }
+  main { max-width:820px; margin:0 auto; padding:0 1.4rem 5rem; }
+  .head { padding:3.5rem 0 2rem; border-bottom:3px solid var(--navy); }
+  .kicker { display:inline-flex; align-items:center; gap:.55rem; background:var(--navy); color:#fff;
+            font-weight:600; font-size:.8rem; letter-spacing:.08em; text-transform:uppercase;
+            padding:.35rem .8rem .35rem .9rem; }
+  .kicker::after { content:"\00BB"; color:var(--gold); }
+  .head h1 { font-size:clamp(1.8rem, 4.5vw, 2.6rem); margin:1rem 0 .6rem; }
+  .head p { color:var(--dim); max-width:44rem; }
+  section { margin-top:3rem; }
+  h2 { font-size:1.3rem; margin-bottom:.5rem; }
+  h2 .no { color:var(--gold-deep); font-size:.9rem; vertical-align:.4em; margin-right:.4rem;
+           font-family:"Source Sans 3", sans-serif; font-weight:600; }
+  .meta { font-size:.85rem; color:var(--dim); margin-bottom:.7rem; }
+  .meta code { background:var(--wash); border:1px solid var(--line); border-radius:5px; padding:.05rem .4rem; }
+  .prompt { position:relative; background:var(--navy-deep); color:#e8ecf6; border-radius:10px;
+            padding:1.1rem 1.2rem; font:14px/1.6 ui-monospace, "SF Mono", Menlo, monospace;
+            white-space:pre-wrap; }
+  .prompt::before { content:"GEMINI PROMPT"; position:absolute; top:-.62rem; left:1rem;
+            background:var(--gold); color:var(--navy-deep); font:600 .66rem/1 "Source Sans 3", sans-serif;
+            letter-spacing:.09em; padding:.28rem .55rem; border-radius:4px; }
+  .style-block { background:var(--wash); border:2px solid var(--navy); border-radius:10px;
+            padding:1.1rem 1.2rem; font:14px/1.6 ui-monospace, "SF Mono", Menlo, monospace;
+            white-space:pre-wrap; }
+  .checklist { border:2px solid var(--gold-deep); border-radius:12px; background:#fdf8ec;
+            padding:1.2rem 1.4rem; margin-top:3.5rem; }
+  .checklist h2 { margin-bottom:.6rem; }
+  .checklist ol { margin:.4rem 0 0 1.2rem; }
+  .checklist li { margin:.4rem 0; font-size:.95rem; }
+  .back { display:inline-block; margin-top:2.5rem; font-weight:600; }
+</style>
+</head>
+<body>
+<main>
+
+<header class="head">
+  <span class="kicker">Asset kit</span>
+  <h1>Image prompts for the diagrams</h1>
+  <p>Every visual on the main page can be regenerated as a finished illustration with these prompts. Paste the shared style block first, then one asset prompt per generation. Target model: Gemini (image generation). Each prompt names its output file and the spot it fills on the page.</p>
+</header>
+
+<section>
+  <h2><span class="no">S</span>Shared style block (prepend to every prompt)</h2>
+  <div class="style-block">STYLE, applies to the whole image: clean editorial infographic on a pure white background. Two-color system: deep navy blue #1C2D5E for structure, lines, and primary text; warm gold #E8A820 as the single accent for highlights, arrows, and emphasis. Light gray #E5E8EF for hairline dividers only. Flat vector look, no gradients, no drop shadows, no 3D, no photorealism. Generous white space. A refined serif for headings, a clean humanist sans-serif for labels. Institutional-document mood with one playful accent, like a well-designed government report that knows it is being read by a human. No watermarks, no logos, no fictional text beyond the labels specified.</div>
+</section>
+
+<section>
+  <h2><span class="no">01</span>Hero illustration</h2>
+  <p class="meta">Output: <code>assets/hero.png</code> &middot; 16:9 &middot; slots under the hero headline on <code>index.html</code></p>
+  <div class="prompt">Wide editorial illustration: a thick stack of grant application pages on the left, bound with a navy cover sheet, with a large rejected-stamp motif rendered subtly in gold outline. From the stack, a single gold thread runs rightward through a magnifying glass and resolves into one clean, highlighted line of text on a small card labeled "PRIMARY CAUSE". The thread is the visual spine of the image. Composition reads left to right: messy input, one instrument, one precise answer. No human figures. Keep at least 20% clear white space at the top for headline overlay.</div>
+</section>
+
+<section>
+  <h2><span class="no">02</span>Five-stage pipeline diagram</h2>
+  <p class="meta">Output: <code>assets/pipeline.png</code> &middot; 21:9 wide strip &middot; replaces or heads section 02</p>
+  <div class="prompt">Horizontal process diagram of five stations connected by a single navy line with small gold arrowheads. Stations, each a rounded-rectangle card with a number and a one-word label: 01 INTAKE with a clipboard icon, 02 EXTRACT with brackets pulling text out of a page icon, 03 MATCH with a document aligning against a reference table icon, 04 VERIFY with a checkmark-over-citation icon, 05 DIAGNOSE with a stamped verdict card icon. After station 05, the line forks briefly: the main path ends at a gold card labeled "NAMED CAUSE", a thinner dashed path ends at a plain card labeled "NO DIAGNOSIS". The fork must be visibly part of the design, not an afterthought. All icons line-drawn in navy, single-weight strokes.</div>
+</section>
+
+<section>
+  <h2><span class="no">03</span>Page-limit spec sheet</h2>
+  <p class="meta">Output: <code>assets/spec-sheet.png</code> &middot; 4:5 portrait &middot; alternative render of the section 03 table</p>
+  <div class="prompt">A vertical infographic styled like an official specification sheet titled "F31 APPLICATION COMPONENTS" in a navy header band with the phrase "LENGTH LIMITS" right-aligned in gold. Eleven rows, each with the component name on the left, a horizontal gold bar proportional to its limit, and the limit on the right. Rows top to bottom: Abstract, 30 lines. Project Narrative, 3 sentences. Candidate Biosketch, 5 pages. Sponsor Biosketch, 5 pages. Candidate Goals Preparedness and Potential, 3 pages. Training Activities and Timelines, 3 pages. Specific Aims, 1 page. Research Strategy, 6 pages. Sponsor Commitment, 6 pages. Letters of Support, 6 pages. Reference Letters, 2 pages each. The 6-page bars are full width; all other bars scale proportionally, with the 3-sentence bar the shortest. Footer line in small gray text: "Biosketches are the NIH-format CV."</div>
+</section>
+
+<section>
+  <h2><span class="no">04</span>Scoring rubric scorecard</h2>
+  <p class="meta">Output: <code>assets/rubric.png</code> &middot; 3:2 &middot; heads section 04</p>
+  <div class="prompt">Three upright cards in a row on white, like an official scorecard set. Card one: large gold "F1", title "Candidate's Preparedness and Potential", beneath it a horizontal 1-to-9 scale with the 1 end marked BEST in gold. Card two: gold "F2", title "Research Training Plan", the same 1-to-9 scale. Card three: gold "F3", title "Sponsor and Institutional Commitment", and instead of a scale, two small stamps reading "APPROPRIATE" and "GAPS FLAGGED", the first in gold outline. Below the three cards, one connected flow line: IMPACT SCORE 10-90 into PERCENTILE into a gate labeled PAYLINE, where the line splits into a gold FUNDED path and a navy dashed NOT FUNDED path. The NOT FUNDED path ends with a small magnifying glass icon.</div>
+</section>
+
+<section>
+  <h2><span class="no">05</span>Career pathway relay</h2>
+  <p class="meta">Output: <code>assets/pathway.png</code> &middot; 21:9 wide &middot; replaces the CSS pathway grid in section 05</p>
+  <div class="prompt">A relay-race timeline of an NIH research career, five stage columns left to right under one continuous navy arrow: UNDERGRADUATE, GRADUATE / MEDICAL SCHOOL, POSTDOCTORAL, TRANSITION / JUNIOR FACULTY, FACULTY / TENURED. Under each stage, small award chips: Undergraduate has R25 and Summer Programs as dashed-outline chips. Graduate/Medical School has F31 as a solid gold chip with a small flag marker, F30 as a solid navy chip, T32 and T35 as dashed chips. Postdoctoral has F32 and K99/R00 as solid navy chips. Transition has K01, K08, K23 solid and K12 dashed. Faculty has R01 and K24 solid. Legend bottom left: solid chip equals individual award, dashed chip equals institutional award, gold chip labeled "PROVEN HERE". The single gold chip must be the first thing the eye lands on.</div>
+</section>
+
+<section>
+  <h2><span class="no">06</span>Med-student timeline</h2>
+  <p class="meta">Output: <code>assets/med-timeline.png</code> &middot; 16:9 &middot; sits inside the med-student callout</p>
+  <div class="prompt">A horizontal med-school timeline on white: four navy year markers labeled M1, M2, M3, M4, extended by a bracketed segment labeled PhD PHASE for dual-degree students. Three gold callouts anchor to it: T35 arrow pointing at the summer gap after M1, labeled "summer research block". F30 bracket spanning from M1 across the PhD phase, labeled "funds the full dual degree". F31 bracket over the PhD phase only, labeled "PhD phase, dual-degree", marked with a small gold flag reading "PROVEN". Below the timeline, one warning motif in navy: a small calendar icon with one year crossed out in gold, captioned "a misread critique costs a resubmission cycle". Clean, sparse, generous spacing.</div>
+</section>
+
+<div class="checklist">
+  <h2>Completeness check (run after assets are approved)</h2>
+  <ol>
+    <li>Six files exist in <code>assets/</code> with the exact names above, none zero-byte.</li>
+    <li>Every image renders in both the navy #1C2D5E and gold #E8A820 family. An off-palette asset gets regenerated, not color-corrected.</li>
+    <li>All award codes spell-check against the page: F30, F31, F32, K01, K08, K12, K23, K24, K99/R00, R01, R25, T32, T35. No invented codes.</li>
+    <li>Spec-sheet numbers match the table on <code>index.html</code> line for line.</li>
+    <li>No watermark, no fictional institution names, no legible fake fine print.</li>
+    <li>Each image is wired into <code>index.html</code> with a real <code>alt</code> text and renders at mobile width without horizontal page scroll.</li>
+  </ol>
+</div>
+
+<a class="back" href="index.html">&larr; Back to the write-up</a>
+
+</main>
+</body>
+</html>
