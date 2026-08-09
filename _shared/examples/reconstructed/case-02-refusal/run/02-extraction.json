@@ -1,0 +1,43 @@
+{
+  "_label": "RECONSTRUCTED - derived from a reconstructed case; not real reviewer language.",
+  "case_id": "CASE-02-OKONKWO",
+  "face_page": {
+    "impact_score": { "raw": 45, "type": "impact_10_90", "scored": 55 },
+    "percentile": { "raw": 38, "type": "percentile_0_100" },
+    "payline": 20,
+    "outcome": "unfunded, outside payline"
+  },
+  "grid": {
+    "F1": {
+      "reviewer_1": { "raw": 4, "scored": 6, "type": "criterion_1_9" },
+      "reviewer_2": { "raw": 4, "scored": 6, "type": "criterion_1_9" },
+      "reviewer_3": { "raw": 5, "scored": 5, "type": "criterion_1_9" }
+    },
+    "F2": {
+      "reviewer_1": { "raw": 4, "scored": 6, "type": "criterion_1_9" },
+      "reviewer_2": { "raw": 5, "scored": 5, "type": "criterion_1_9" },
+      "reviewer_3": { "raw": 4, "scored": 6, "type": "criterion_1_9" }
+    },
+    "F3": {
+      "reviewer_1": { "value": "appropriate", "type": "categorical_commitment" },
+      "reviewer_2": { "value": "appropriate", "type": "categorical_commitment" },
+      "reviewer_3": { "value": "appropriate", "type": "categorical_commitment" }
+    }
+  },
+  "critique_quotes": [
+    { "id": "q1", "reviewer": "reviewer_1", "factor": "F1", "polarity": "weakness",
+      "quote": "Enthusiasm among the reviewers was moderate." },
+    { "id": "q2", "reviewer": "reviewer_2", "factor": "F1", "polarity": "weakness",
+      "quote": "The panel did not reach consensus on the relative merit of this application compared with others in the pool." },
+    { "id": "q3", "reviewer": "reviewer_2", "factor": "F2", "polarity": "weakness",
+      "quote": "No specific weakness identified beyond the general competitiveness of this round." },
+    { "id": "q4", "reviewer": "reviewer_3", "factor": "F2", "polarity": "weakness",
+      "quote": "The reviewer noted a strong field this cycle." }
+  ],
+  "located_excerpts": [
+    { "id": "x1", "source": "application", "section": "Specific Aims",
+      "excerpt": "Aim 1 tests the hypothesis that IL-22 signaling drives epithelial repair after enteric infection; Aim 2 defines the receptor requirement using conditional knockouts, with a power analysis in section C.4 and both sexes included." }
+  ],
+  "n_items": 16,
+  "n_warnings": 0
+}

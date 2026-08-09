@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>An F31 diagnostician I built and then forgot to submit</title>
+<style>
+  :root { --ink:#1a1d21; --dim:#5b6470; --line:#e3e6ea; --bg:#fafbfc; }
+  * { box-sizing:border-box; }
+  body { margin:0; padding:2.5rem 1.25rem 4rem; background:var(--bg); color:var(--ink);
+         font:17px/1.65 -apple-system, "SF Pro Text", Segoe UI, sans-serif; }
+  main { max-width:720px; margin:0 auto; }
+  h1 { font-size:1.6rem; line-height:1.25; margin:0 0 .3rem; }
+  .date { color:var(--dim); font-size:.9rem; margin-bottom:1.6rem; }
+  h2 { font-size:1.1rem; margin:2rem 0 .5rem; border-bottom:1px solid var(--line); padding-bottom:.3rem; }
+  code { background:#eef1f4; padding:.1rem .35rem; border-radius:4px; font-size:.88em; }
+  a { color:#0b57d0; }
+  ul { padding-left:1.3rem; }
+  li { margin:.3rem 0; }
+</style>
+</head>
+<body>
+<main>
+<h1>An F31 diagnostician I built and then forgot to submit</h1>
+<p class="date">August 9, 2026</p>
+
+<p>This was built for a competition with a hard deadline of 11:59 PM the night before this post. The build finished, passed its own verification gate, and then sat there waiting on a final go that never came because I didn't get around to it. So instead of a submission, it's a repo. Posting it for fun.</p>
+
+<p>What it is: a pipeline that reads a graduate fellowship application (the NIH F31 kind) alongside its reviewer critique and works out <em>why</em> it scored the way it did. Five stages: intake, extraction, matching against a table of known failure modes, verification, and a diagnosis write-up. If the critique doesn't actually match any known failure mode, it refuses to invent one and writes a no-diagnosis file instead. That refusal path is tested.</p>
+
+<h2>What I like about it</h2>
+<ul>
+  <li>The whole thing is plain markdown contracts and a shell verify gate. No framework. An agent lands in the repo, reads one 42-line entry file, and knows where it is and what to do next.</li>
+  <li>The gate has 78 checks and, more importantly, a selftest that injects four defects to prove the gate can fail. During the build it caught a real bug in itself: a grep flag that BSD grep silently ignores, which had it passing on a tree that should have failed.</li>
+  <li>Reconstructed example cases are labeled as reconstructed on line one, and a negative-control case exists where the correct answer is "no diagnosis."</li>
+</ul>
+
+<h2>Where to look</h2>
+<ul>
+  <li><code>README.md</code>, then the how-to-run section.</li>
+  <li><code>verify-evidence.txt</code> for the full gate output and the walk-test transcript.</li>
+  <li><code>_shared/rules/failure-modes.md</code> for the diagnosis table itself.</li>
+</ul>
+
+<p>Would it have placed? No idea. That's part of the fun of shipping it late.</p>
+</main>
+</body>
+</html>

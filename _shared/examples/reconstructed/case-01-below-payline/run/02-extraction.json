@@ -1,0 +1,47 @@
+{
+  "_label": "RECONSTRUCTED - derived from a reconstructed case; not real reviewer language.",
+  "case_id": "CASE-01-NAKAMURA",
+  "face_page": {
+    "impact_score": { "raw": 42, "type": "impact_10_90", "scored": 58 },
+    "percentile": { "raw": 34, "type": "percentile_0_100" },
+    "payline": 20,
+    "outcome": "unfunded, outside payline"
+  },
+  "grid": {
+    "F1": {
+      "reviewer_1": { "raw": 5, "scored": 5, "type": "criterion_1_9" },
+      "reviewer_2": { "raw": 5, "scored": 5, "type": "criterion_1_9" },
+      "reviewer_3": { "raw": 6, "scored": 4, "type": "criterion_1_9" }
+    },
+    "F2": {
+      "reviewer_1": { "raw": 3, "scored": 7, "type": "criterion_1_9" },
+      "reviewer_2": { "raw": 3, "scored": 7, "type": "criterion_1_9" },
+      "reviewer_3": { "raw": 4, "scored": 6, "type": "criterion_1_9" }
+    },
+    "F3": {
+      "reviewer_1": { "value": "appropriate", "type": "categorical_commitment" },
+      "reviewer_2": { "value": "appropriate", "type": "categorical_commitment" },
+      "reviewer_3": { "value": "appropriate", "type": "categorical_commitment" }
+    }
+  },
+  "critique_quotes": [
+    { "id": "q1", "reviewer": "reviewer_1", "factor": "F1", "polarity": "weakness",
+      "quote": "The applicant's productivity is solid, but the potential for an independent research career is not well established by the application as written." },
+    { "id": "q2", "reviewer": "reviewer_2", "factor": "F1", "polarity": "weakness",
+      "quote": "The training plan reads as a list of activities rather than a response to a stated gap in this candidate's preparation." },
+    { "id": "q3", "reviewer": "reviewer_2", "factor": "F1", "polarity": "weakness",
+      "quote": "Coursework, seminar attendance, and conference travel are enumerated; the record is not placed in context of the stated career goal." },
+    { "id": "q4", "reviewer": "reviewer_3", "factor": "F1", "polarity": "weakness",
+      "quote": "Publications and grades are present. What is missing is the argument connecting them to readiness for independence." },
+    { "id": "q5", "reviewer": "reviewer_2", "factor": "F2", "polarity": "weakness",
+      "quote": "Aim 3 is somewhat ambitious for the remaining years, though the sponsor's support mitigates this." }
+  ],
+  "located_excerpts": [
+    { "id": "x1", "source": "application", "section": "Candidate's Preparedness and Potential",
+      "excerpt": "I have completed two rotations, coauthored three papers, and passed my qualifying exam in year two. My goal is an independent research career in mucosal immunology." },
+    { "id": "x2", "source": "application", "section": "Training Plan",
+      "excerpt": "Training activities: IMM 210 Advanced Immunology (fall Y3); weekly lab meeting; departmental seminar series; one national conference per year; responsible conduct of research module." }
+  ],
+  "n_items": 20,
+  "n_warnings": 0
+}

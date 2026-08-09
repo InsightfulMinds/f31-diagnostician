@@ -1,0 +1,26 @@
+{
+  "_label": "RECONSTRUCTED - derived from a reconstructed case; not real reviewer language.",
+  "case_id": "CASE-01-NAKAMURA",
+  "validations": [
+    { "value": 42, "type": "impact_10_90", "is_valid": true, "message": "42 within 10-90" },
+    { "value": 34, "type": "percentile_0_100", "is_valid": true, "message": "34 within 0-100" },
+    { "value": 5, "type": "criterion_1_9", "is_valid": true, "message": "5 within 1-9" },
+    { "value": 6, "type": "criterion_1_9", "is_valid": true, "message": "6 within 1-9" },
+    { "value": 3, "type": "criterion_1_9", "is_valid": true, "message": "3 within 1-9" },
+    { "value": 4, "type": "criterion_1_9", "is_valid": true, "message": "4 within 1-9" },
+    { "value": "appropriate", "type": "categorical_commitment", "is_valid": true, "message": "member of {appropriate, gaps_flagged}" }
+  ],
+  "candidates": [
+    { "mode": "mode-06-record-not-argued", "quote_ids": ["q1", "q3", "q4"], "quote_count": 3,
+      "grid_supported": true, "moved_cell": "F1", "excerpt_ids": ["x1"], "supported": true,
+      "note": "x1 lists rotations, papers, and the exam, then states the goal. It shows the record enumerated and the trajectory asserted rather than argued, which is what the reviewers said was missing." },
+    { "mode": "mode-05-generic-training-plan", "quote_ids": ["q2"], "quote_count": 1,
+      "grid_supported": true, "moved_cell": "F1", "excerpt_ids": ["x2"], "supported": true,
+      "note": "x2 is a course and activity list with no gap analysis." },
+    { "mode": "mode-08-infeasible-timeline", "quote_ids": ["q5"], "quote_count": 1,
+      "grid_supported": false, "moved_cell": null, "excerpt_ids": [], "supported": false,
+      "note": "F2 is the strong factor here; the timeline remark sits on an unmoved cell and no excerpt was located." }
+  ],
+  "n_items": 20,
+  "n_warnings": 0
+}

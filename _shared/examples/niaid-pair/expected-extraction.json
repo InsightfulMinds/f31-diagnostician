@@ -1,0 +1,94 @@
+{
+  "_comment": "Expected output of stages/02_extract for the NIAID pair. Extraction fidelity evidence only; no diagnosis is run on this case. Credit and caveats in README.md in this folder.",
+  "case_id": "niaid-schwartz-1F31AI133950-01",
+  "rubric_version_of_review": "pre-2025 five-criterion fellowship format (2017 round)",
+  "legacy_heading_map": {
+    "_comment": "Lossy. Used ONLY to place legacy headings against the 2025 factors for fidelity checking. Never used for diagnosis.",
+    "Fellowship Applicant": "F1",
+    "Research Training Plan": "F2",
+    "Training Potential": "F2",
+    "Sponsors, Collaborators, and Consultants": "F3",
+    "Institutional Environment & Commitment to Training": "F3"
+  },
+  "face_page": {
+    "impact_score": { "raw": 17, "type": "impact_10_90", "scored": 83 },
+    "percentile": null,
+    "outcome": "funded"
+  },
+  "grid": {
+    "_comment": "criterion -> reviewer -> raw score, with reverse-coded scored value alongside. scored = (max + min) - raw = 10 - raw for criterion_1_9.",
+    "Fellowship Applicant": {
+      "reviewer_1": { "raw": 1, "scored": 9, "type": "criterion_1_9" },
+      "reviewer_2": { "raw": 1, "scored": 9, "type": "criterion_1_9" },
+      "reviewer_3": { "raw": 1, "scored": 9, "type": "criterion_1_9" }
+    },
+    "Sponsors, Collaborators, and Consultants": {
+      "reviewer_1": { "raw": 1, "scored": 9, "type": "criterion_1_9" },
+      "reviewer_2": { "raw": 1, "scored": 9, "type": "criterion_1_9" },
+      "reviewer_3": { "raw": 1, "scored": 9, "type": "criterion_1_9" }
+    },
+    "Research Training Plan": {
+      "reviewer_1": { "raw": 1, "scored": 9, "type": "criterion_1_9" },
+      "reviewer_2": { "raw": 2, "scored": 8, "type": "criterion_1_9" },
+      "reviewer_3": { "raw": 1, "scored": 9, "type": "criterion_1_9" }
+    },
+    "Training Potential": {
+      "reviewer_1": { "raw": 1, "scored": 9, "type": "criterion_1_9" },
+      "reviewer_2": { "raw": 2, "scored": 8, "type": "criterion_1_9" },
+      "reviewer_3": { "raw": 1, "scored": 9, "type": "criterion_1_9" }
+    },
+    "Institutional Environment & Commitment to Training": {
+      "reviewer_1": { "raw": 1, "scored": 9, "type": "criterion_1_9" },
+      "reviewer_2": { "raw": 1, "scored": 9, "type": "criterion_1_9" },
+      "reviewer_3": { "raw": 1, "scored": 9, "type": "criterion_1_9" }
+    }
+  },
+  "critique_quotes": [
+    {
+      "reviewer": "reviewer_1",
+      "heading": "Fellowship Applicant",
+      "polarity": "weakness",
+      "quote": "None noted."
+    },
+    {
+      "reviewer": "reviewer_2",
+      "heading": "Sponsors, Collaborators, and Consultants",
+      "polarity": "weakness",
+      "quote": "The sponsor's current funding is a R01 for RNA modification and antibiotic resistance. This will be offset if the pending R01 that is directly related to the proposed research is funded."
+    },
+    {
+      "reviewer": "reviewer_2",
+      "heading": "Research Training Plan",
+      "polarity": "weakness",
+      "quote": "A large amount of work may be required to obtain crystals that diffract at high resolution as proposed in Aim 2.3. There is inherent risk that this might not be achieved in the timeframe that is requested."
+    },
+    {
+      "reviewer": "reviewer_2",
+      "heading": "Training Potential",
+      "polarity": "weakness",
+      "quote": "The applicant will need to learn a number of new techniques, including mass spectrometry and X-ray crystallography. This may require significant time to obtain the skills that can be productively used for the proposed experiments."
+    },
+    {
+      "reviewer": "panel",
+      "heading": "RESUME AND SUMMARY OF DISCUSSION",
+      "polarity": "mixed",
+      "quote": "The research training plan is well articulated, although some review it as somewhat risky (high risk, high reward)."
+    }
+  ],
+  "located_excerpts": [
+    {
+      "source": "application",
+      "section": "SPECIFIC AIMS",
+      "page": 39,
+      "excerpt": "Lastly, I will use x-ray crystallography to solve structures of dsRNA hairpins bound to OAS1."
+    },
+    {
+      "source": "application",
+      "section": "SPECIFIC AIMS",
+      "page": 39,
+      "excerpt": "Next, I will use hydrogen-deuterium exchange coupled with mass spectrometry to determine the impact of each dsRNA hairpin on OAS1 conformational dynamics, including critical allosteric changes in the enzyme active site."
+    }
+  ],
+  "n_items": 15,
+  "n_warnings": 0
+}

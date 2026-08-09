@@ -1,0 +1,21 @@
+{
+  "_label": "RECONSTRUCTED - derived from a reconstructed case; not real reviewer language.",
+  "case_id": "CASE-02-OKONKWO",
+  "grid_reading": "No factor separates: F1 4/4/5, F2 4/5/4, F3 appropriate across the panel. No moved cell.",
+  "matches": [
+    { "quote_id": "q1", "mode": null, "strategy": 5, "paraphrase": false, "ambiguous": false, "unmatched": true,
+      "quote": "Enthusiasm among the reviewers was moderate.",
+      "note": "No phrase map hit. Panel-affect language, not a failure mode." },
+    { "quote_id": "q2", "mode": null, "strategy": 5, "paraphrase": false, "ambiguous": false, "unmatched": true,
+      "quote": "The panel did not reach consensus on the relative merit of this application compared with others in the pool.",
+      "note": "Comparative-pool language. Nearest tempting mode is mode-13-wrong-ic-fit, but nothing here names mission fit; not forced." },
+    { "quote_id": "q3", "mode": null, "strategy": 5, "paraphrase": false, "ambiguous": false, "unmatched": true,
+      "quote": "No specific weakness identified beyond the general competitiveness of this round.",
+      "note": "Explicitly states no specific weakness." },
+    { "quote_id": "q4", "mode": null, "strategy": 5, "paraphrase": false, "ambiguous": false, "unmatched": true,
+      "quote": "The reviewer noted a strong field this cycle.",
+      "note": "Field-strength remark. No mode." }
+  ],
+  "n_items": 16,
+  "n_warnings": 4
+}

@@ -1,0 +1,175 @@
+VERIFY EVIDENCE - F31 Submission Diagnostician
+generated 2026-08-08T23:38:53Z on M2, bash 3.2.57(1)-release
+
+########## 1. verify-gate.sh - full output ##########
+=== 1. Ceilings ===
+PASS  entry CLAUDE.md       42 lines (<=60)
+PASS  stages/01_intake/CONTEXT.md       56 lines (<=80)
+PASS  stages/02_extract/CONTEXT.md       65 lines (<=80)
+PASS  stages/03_match/CONTEXT.md       56 lines (<=80)
+PASS  stages/04_verify/CONTEXT.md       61 lines (<=80)
+PASS  stages/05_diagnose/CONTEXT.md       64 lines (<=80)
+PASS  reference _shared/examples/niaid-pair/expected-extraction.json       94 lines (<=200)
+PASS  reference _shared/examples/niaid-pair/README.md       36 lines (<=200)
+PASS  reference _shared/examples/niaid-pair/source-excerpts.txt       24 lines (<=200)
+PASS  reference _shared/examples/reconstructed/case-01-below-payline/input-case.md       48 lines (<=200)
+PASS  reference _shared/examples/reconstructed/case-01-below-payline/run/02-extraction.json       47 lines (<=200)
+PASS  reference _shared/examples/reconstructed/case-01-below-payline/run/03-matches.json       19 lines (<=200)
+PASS  reference _shared/examples/reconstructed/case-01-below-payline/run/04-verification.json       26 lines (<=200)
+PASS  reference _shared/examples/reconstructed/case-01-below-payline/run/05-diagnosis.md       43 lines (<=200)
+PASS  reference _shared/examples/reconstructed/case-02-refusal/input-case.md       47 lines (<=200)
+PASS  reference _shared/examples/reconstructed/case-02-refusal/run/02-extraction.json       43 lines (<=200)
+PASS  reference _shared/examples/reconstructed/case-02-refusal/run/03-matches.json       21 lines (<=200)
+PASS  reference _shared/examples/reconstructed/case-02-refusal/run/05-no-diagnosis.md       39 lines (<=200)
+PASS  reference _shared/examples/reconstructed/README.md       16 lines (<=200)
+PASS  reference _shared/rules/failure-modes.md      101 lines (<=200)
+PASS  reference _shared/rules/paylines.md       27 lines (<=200)
+PASS  reference _shared/rules/ranking-opinion.md       37 lines (<=200)
+PASS  reference _shared/rules/rubric-2025.json       72 lines (<=200)
+PASS  reference _shared/schema/audit-table.md       15 lines (<=200)
+=== 2. Contract shape ===
+PASS  stages/01_intake/CONTEXT.md four sections + Do-NOT-load + audit table
+PASS  stages/02_extract/CONTEXT.md four sections + Do-NOT-load + audit table
+PASS  stages/03_match/CONTEXT.md four sections + Do-NOT-load + audit table
+PASS  stages/04_verify/CONTEXT.md four sections + Do-NOT-load + audit table
+PASS  stages/05_diagnose/CONTEXT.md four sections + Do-NOT-load + audit table
+PASS  stages/03_match forbids prior output (d.9)
+PASS  stages/05_diagnose forbids prior output (d.9)
+PASS  02_extract restates the reverse-coding formula inline
+PASS  05_diagnose restates the evidence threshold inline
+PASS  03_match defines strategy 5 as flag-not-force
+=== 3. One-way references ===
+PASS  stages/01_intake names no later stage
+PASS  stages/02_extract names no later stage
+PASS  stages/03_match names no later stage
+PASS  stages/04_verify names no later stage
+PASS  stages/05_diagnose names no later stage
+=== 4. Rubric validates against its own schema ===
+PASS  rubric-2025.json validates against its declared schema (3 factors, F3 categorical, 3 numeric types)
+=== 4b. Reverse coding present in every example extraction ===
+PASS  every 1-9 and 10-90 item carries raw+scored with correct arithmetic; F3 categorical; counts present
+=== 5a. NIAID extraction fidelity ===
+PASS  every NIAID quote, excerpt, and grid cell matches the verbatim source excerpts
+PASS  NIAID credit line present in the example folder header
+PASS  no diagnosis is run on the funded NIAID pair
+=== 5b. Demo diagnosis on the reconstructed below-payline case ===
+PASS  demo names exactly one primary cause (3 modes mentioned in total)
+PASS  demo cites 3 verbatim critique quotes (>=2)
+PASS  demo cites a moved grid cell
+PASS  demo traces to a located excerpt
+PASS  demo contains no advice
+=== 6. Negative control: refusal on the below-payline no-match case ===
+PASS  refusal case produced no-diagnosis.md and no diagnosis
+PASS  refusal names the shortfall condition(s)
+PASS  refusal states why the tempting modes (2 discussed) were declined
+=== 7. Reconstructed labels and tree-wide leak grep ===
+PASS  every file under examples/reconstructed carries the label on line 1
+PASS  no reconstructed phrase appears outside examples/reconstructed
+=== 8. Canon greps ===
+PASS  no em-dash anywhere in the tree
+PASS  mode-01-mini-r01 defined only in failure-modes.md (referenced in 1 files)
+PASS  mode-06-record-not-argued defined only in failure-modes.md (referenced in 4 files)
+PASS  mode-13-wrong-ic-fit defined only in failure-modes.md (referenced in 3 files)
+PASS  rubric factor names concentrated in rubric-2025.json plus stage references (2 files)
+PASS  payline threshold sentence has exactly one home
+PASS  economics token figures have exactly one home
+=== 9. Root catalog holds no payload (d.20) ===
+PASS  root CONTEXT.md links down and stores nothing
+PASS  root CONTEXT.md       20 lines
+=== 10. output/ ships empty ===
+PASS  every stage output/ holds only .gitkeep
+=== 11. Token budget per stage (entry + contract + its named inputs) ===
+PASS  01_intake: entry+contract+inputs ~= 3084 tokens (2k-8k)
+PASS  02_extract: entry+contract+inputs ~= 3345 tokens (2k-8k)
+PASS  03_match: entry+contract+inputs ~= 3257 tokens (2k-8k)
+PASS  04_verify: entry+contract+inputs ~= 2935 tokens (2k-8k)
+PASS  05_diagnose: entry+contract+inputs ~= 3933 tokens (2k-8k)
+=== 12. Submission README ===
+PASS  README carries the accuracy trade sentence
+PASS  README carries both savings figures
+PASS  README marks cohort/threshold as pending confirmation
+PASS  README has a GAPS section
+PASS  sources.md exists and credits NIAID
+
+GATE: GREEN (0 FAIL)
+gate exit: 0
+
+########## 2. verify-gate.sh --selftest - proves the gate can fail ##########
+Four defects are injected into a temp copy of the tree and the gate must reject each.
+Note: this selftest already caught one real defect during the build. The em-dash check
+used 'grep -P', which BSD grep on macOS does not support, so it silently passed on a
+tree that did contain an em-dash. Fixed to match the literal character.
+
+=== SELFTEST: the gate must reject each injected defect ===
+PASS  selftest/forced_diagnosis rejected (exit 1)
+PASS  selftest/leaked_reconstructed_string rejected (exit 1)
+PASS  selftest/bad_rubric_type rejected (exit 1)
+PASS  selftest/em_dash rejected (exit 1)
+=== SELFTEST 4/4 defects caught ===
+selftest exit: 0
+
+########## 3. COLD WALK TEST (build step 5.5, d.10) ##########
+
+A fresh subagent, no build context, no knowledge of this workspace. Its
+entire input was:
+
+  "Read <repo-root>/
+   diagnostician/CLAUDE.md and answer: where are you, where do you go
+   next, what does stage 03 need?"
+
+Its answer, verbatim:
+
+---
+I opened 1 file.
+
+- **Where you are:** Root of the F31 Submission Diagnostician ICM Pipeline
+  workspace (`<repo-root>/`). This
+  root file is a router only - it holds no payload.
+
+- **Where you go next:** Read `CONTEXT.md` (root catalog) first, then fill
+  `setup/questionnaire.md` with the case being diagnosed, then enter
+  `stages/01_intake/` and follow its own `CONTEXT.md`.
+
+- **What stage 03 needs:** I can't say - the CLAUDE.md only names what
+  stage 03 (`stages/03_match/`) *does*: "failure-mode matching over the
+  extraction JSON." Its actual Inputs/Process/Outputs/Human-check contract
+  lives in `stages/03_match/CONTEXT.md`, which I did not open (the file
+  explicitly says never load another stage's contract, and I only read
+  what was asked). To answer that precisely, read
+  `stages/03_match/CONTEXT.md` directly.
+---
+
+VERDICT: PASS on walk-test items 1 and 4.
+
+- Item 1 (orientation in entry + <=2 reads): the agent oriented itself
+  and named the next action from ONE read.
+- Item 4 (no routing file carries payload): the agent independently
+  identified the entry file as a router holding no payload, and could not
+  answer the stage-03 question from it. That third answer is the correct
+  behavior, not a miss: the catalog holds no books (d.20), so stage 03's
+  inputs live in stage 03's contract by design. A CLAUDE.md that could
+  answer it would be carrying payload and would fail item 4.
+
+########## 4. BASELINE ARM (d.17, P0-3) ##########
+
+Metric pre-declared in _meta/baseline/metric.md BEFORE either arm was
+scored. Run and result in _meta/baseline/run.md. Summary:
+
+  TREATMENT (failure-mode table loaded): 1 exact mode id + 3 complete
+  verbatim quotes = SCORE 4.
+  BASELINE (fresh subagent, never shown failure-modes.md or any part of
+  this workspace): 0 exact mode ids + either 1 complete verbatim quote or
+  4 verbatim fragments = SCORE 1 or 4, depending on a reading the
+  pre-declared metric did not pin down.
+
+REPORTED HONESTLY, NOT AS A GREEN LINE: the baseline reached a
+substantively similar conclusion in prose from the case alone. On this
+one case, with this one model, the table's measured contribution is a
+canonical mode id and complete rather than spliced quotations, not a
+better answer. n=1, reconstructed case. Carried as GAPS item 5 in
+README.md.
+
+########## 5. FINAL RE-RUN after adding references/.gitkeep ##########
+PASS  sources.md exists and credits NIAID
+
+GATE: GREEN (0 FAIL)

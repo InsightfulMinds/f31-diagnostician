@@ -1,0 +1,19 @@
+{
+  "_label": "RECONSTRUCTED - derived from a reconstructed case; not real reviewer language.",
+  "case_id": "CASE-01-NAKAMURA",
+  "grid_reading": "F1 is the moved cell: 5/5/6 against F2 at 3/3/4. F1 lags F2 by two points at every reviewer. F3 appropriate across the panel, so commitment is not where this application lost.",
+  "matches": [
+    { "quote_id": "q1", "mode": "mode-06-record-not-argued", "strategy": 2, "paraphrase": false, "ambiguous": false, "unmatched": false,
+      "map_phrase": "potential for an independent research career is not well established" },
+    { "quote_id": "q2", "mode": "mode-05-generic-training-plan", "strategy": 2, "paraphrase": false, "ambiguous": false, "unmatched": false,
+      "map_phrase": "list of activities" },
+    { "quote_id": "q3", "mode": "mode-06-record-not-argued", "strategy": 2, "paraphrase": false, "ambiguous": false, "unmatched": false,
+      "map_phrase": "record is not placed in context" },
+    { "quote_id": "q4", "mode": "mode-06-record-not-argued", "strategy": 4, "paraphrase": true, "ambiguous": false, "unmatched": false,
+      "map_phrase": "record is not placed in context" },
+    { "quote_id": "q5", "mode": "mode-08-infeasible-timeline", "strategy": 4, "paraphrase": true, "ambiguous": false, "unmatched": false,
+      "map_phrase": "overly ambitious" }
+  ],
+  "n_items": 20,
+  "n_warnings": 0
+}

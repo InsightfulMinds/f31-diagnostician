@@ -1,0 +1,72 @@
+{
+  "_comment": "NIH fellowship review rubric, post Jan-25-2025 three-factor format. Canonical home of the rubric encoding. Source URLs in /sources.md (grants.nih.gov revised fellowship review criteria + reviewer guidance PDF).",
+  "effective_date": "2025-01-25",
+  "applies_to": ["F30", "F31", "F32", "F33"],
+  "schema": {
+    "_comment": "Self-declared schema. verify-gate.sh validates this document against it.",
+    "value_types": {
+      "criterion_1_9": {
+        "kind": "numeric",
+        "min": 1,
+        "max": 9,
+        "direction": "1 is best, 9 is worst",
+        "reverse_scored": true
+      },
+      "impact_10_90": {
+        "kind": "numeric",
+        "min": 10,
+        "max": 90,
+        "direction": "10 is best, 90 is worst",
+        "reverse_scored": true
+      },
+      "percentile_0_100": {
+        "kind": "numeric",
+        "min": 0,
+        "max": 100,
+        "direction": "lower is better; compared against the IC payline",
+        "reverse_scored": false
+      },
+      "categorical_commitment": {
+        "kind": "categorical",
+        "values": ["appropriate", "gaps_flagged"],
+        "reverse_scored": false
+      }
+    },
+    "factor_required_keys": ["id", "name", "type"],
+    "rules": [
+      "every factor.type must name a key in value_types",
+      "every value_type with kind=numeric declares min and max and reverse_scored",
+      "every value_type with kind=categorical declares values",
+      "exactly one factor has type categorical_commitment",
+      "no factor of type categorical_commitment carries min, max, or a numeric score"
+    ]
+  },
+  "factors": [
+    {
+      "id": "F1",
+      "name": "Candidate's Preparedness and Potential",
+      "type": "criterion_1_9"
+    },
+    {
+      "id": "F2",
+      "name": "Research Training Plan",
+      "type": "criterion_1_9"
+    },
+    {
+      "id": "F3",
+      "name": "Commitment to Candidate",
+      "type": "categorical_commitment"
+    }
+  ],
+  "overall": { "id": "impact", "name": "Overall Impact Score", "type": "impact_10_90" },
+  "percentile": { "id": "percentile", "name": "Percentile", "type": "percentile_0_100" },
+  "reverse_coding": {
+    "formula": "scored_value = (max + min) - score",
+    "applies_to": "every item whose type has reverse_scored true",
+    "persistence": "raw and scored are stored side by side for every reverse-coded item"
+  },
+  "validator_contract": {
+    "signature": "is_valid(value, type_name) -> (bool, message)",
+    "notes": "type-aware, not range-only: numeric types check min <= value <= max for THAT type; categorical types check membership in values. The type name is an argument, never assumed."
+  }
+}

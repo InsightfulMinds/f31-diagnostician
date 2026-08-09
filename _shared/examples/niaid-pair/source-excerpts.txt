@@ -1,0 +1,24 @@
+VERBATIM SOURCE EXCERPTS - NIAID sample pair (credit: see README.md in this folder).
+Source of truth is the published PDF; these are the exact passages cited by expected-extraction.json.
+summary statement PDF sha256 2723e060d7a7ed7a6ad7c9c28c6439ff27bfef0d8ce34bcaf7145e601b94e3ba
+application PDF sha256 eef3fd848d8265d9ddc719e894c10f770c72b88c5a27ab923a0dcf9db7216308
+Apostrophes and quotes normalized to ASCII; whitespace collapsed. No other alteration.
+
+## From the summary statement
+
+[reviewer_1 / Fellowship Applicant / weakness] None noted.
+[reviewer_2 / Sponsors, Collaborators, and Consultants / weakness] The sponsor's current funding is a R01 for RNA modification and antibiotic resistance. This will be offset if the pending R01 that is directly related to the proposed research is funded.
+[reviewer_2 / Research Training Plan / weakness] A large amount of work may be required to obtain crystals that diffract at high resolution as proposed in Aim 2.3. There is inherent risk that this might not be achieved in the timeframe that is requested.
+[reviewer_2 / Training Potential / weakness] The applicant will need to learn a number of new techniques, including mass spectrometry and X-ray crystallography. This may require significant time to obtain the skills that can be productively used for the proposed experiments.
+[panel / RESUME AND SUMMARY OF DISCUSSION / mixed] The research training plan is well articulated, although some review it as somewhat risky (high risk, high reward).
+
+## Score grid lines, verbatim
+
+CRITIQUE 1 Fellowship Applicant: 1 Sponsors, Collaborators, and Consultants: 1 Research Training Plan: 1 Training Potential: 1 Institutional Environment & Commitment to Training: 1
+CRITIQUE 2 Fellowship Applicant: 1 Sponsors, Collaborators, and Consultants: 1 Research Training Plan: 2 Training Potential: 2 Institutional Environment & Commitment to Training: 1
+CRITIQUE 3 Fellowship Applicant: 1 Sponsors, Collaborators, and Consultants: 1 Research Training Plan: 1 1 F31 AI133950-01 9 ZRG1 F13-C (20) SCHWARTZ, S Training Potential: 1 Institutional Environment & Commitment to Training: 1
+
+## From the application
+
+[SPECIFIC AIMS p.39] Lastly, I will use x-ray crystallography to solve structures of dsRNA hairpins bound to OAS1.
+[SPECIFIC AIMS p.39] Next, I will use hydrogen-deuterium exchange coupled with mass spectrometry to determine the impact of each dsRNA hairpin on OAS1 conformational dynamics, including critical allosteric changes in the enzyme active site.
