@@ -3,46 +3,263 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>An F31 diagnostician I built and then forgot to submit</title>
+<title>The F31 Diagnostician</title>
+<meta name="description" content="A pipeline that reads a rejected NIH F31 fellowship application and explains why it scored the way it did. Built for a competition, never submitted, posted for fun.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-  :root { --ink:#1a1d21; --dim:#5b6470; --line:#e3e6ea; --bg:#fafbfc; }
-  * { box-sizing:border-box; }
-  body { margin:0; padding:2.5rem 1.25rem 4rem; background:var(--bg); color:var(--ink);
-         font:17px/1.65 -apple-system, "SF Pro Text", Segoe UI, sans-serif; }
-  main { max-width:720px; margin:0 auto; }
-  h1 { font-size:1.6rem; line-height:1.25; margin:0 0 .3rem; }
-  .date { color:var(--dim); font-size:.9rem; margin-bottom:1.6rem; }
-  h2 { font-size:1.1rem; margin:2rem 0 .5rem; border-bottom:1px solid var(--line); padding-bottom:.3rem; }
-  code { background:#eef1f4; padding:.1rem .35rem; border-radius:4px; font-size:.88em; }
-  a { color:#0b57d0; }
-  ul { padding-left:1.3rem; }
-  li { margin:.3rem 0; }
+  :root {
+    --navy:#1c2d5e; --navy-deep:#15234b; --gold:#e8a820; --gold-deep:#c78e12;
+    --ink:#1d2333; --dim:#5a6376; --line:#e5e8ef; --wash:#f7f8fb; --white:#ffffff;
+  }
+  * { box-sizing:border-box; margin:0; }
+  html { scroll-behavior:smooth; }
+  body { background:var(--white); color:var(--ink);
+         font:17px/1.65 "Source Sans 3", -apple-system, Segoe UI, sans-serif; }
+  h1,h2,h3 { font-family:"Fraunces", Georgia, serif; color:var(--navy); }
+  a { color:var(--navy); text-decoration-color:var(--gold); text-underline-offset:3px; }
+  a:hover { color:var(--gold-deep); }
+  main { max-width:860px; margin:0 auto; padding:0 1.4rem 5rem; }
+  section { margin-top:4.2rem; }
+
+  /* hero */
+  .hero { padding:4.5rem 0 3rem; border-bottom:3px solid var(--navy); position:relative; }
+  .kicker { display:inline-flex; align-items:center; gap:.55rem; background:var(--navy); color:#fff;
+            font-weight:600; font-size:.8rem; letter-spacing:.08em; text-transform:uppercase;
+            padding:.35rem .8rem .35rem .9rem; }
+  .kicker::after { content:"\00BB"; color:var(--gold); font-size:1.05rem; line-height:1; }
+  .hero h1 { font-size:clamp(2.1rem, 5.5vw, 3.4rem); line-height:1.08; margin:1.1rem 0 .9rem;
+             letter-spacing:-0.015em; }
+  .hero h1 em { font-style:normal; color:var(--gold-deep); }
+  .lede { font-size:1.15rem; max-width:44rem; color:var(--dim); }
+  .confess { margin-top:1.4rem; border-left:4px solid var(--gold); background:var(--wash);
+             padding:.85rem 1.1rem; max-width:44rem; font-size:1rem; }
+
+  h2 { font-size:1.55rem; margin-bottom:.9rem; letter-spacing:-0.01em; }
+  h2 .no { color:var(--gold-deep); font-size:.95rem; vertical-align:.45em; margin-right:.4rem;
+           font-family:"Source Sans 3", sans-serif; font-weight:600; letter-spacing:.06em; }
+  p + p { margin-top:.9rem; }
+  .prose { max-width:46rem; }
+
+  /* stages */
+  .stages { list-style:none; padding:0; margin-top:1.4rem; counter-reset:st; }
+  .stages li { counter-increment:st; display:grid; grid-template-columns:3rem 1fr; gap:0 1rem;
+               padding:1rem 0; border-top:1px solid var(--line); }
+  .stages li::before { content:"0" counter(st); font-family:"Fraunces", serif; font-weight:700;
+               color:var(--gold-deep); font-size:1.3rem; }
+  .stages b { color:var(--navy); }
+
+  /* spec sheet */
+  .sheet { border:2px solid var(--navy); margin-top:1.5rem; }
+  .sheet-head { background:var(--navy); color:#fff; padding:.75rem 1.1rem; display:flex;
+                justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:.3rem; }
+  .sheet-head h3 { color:#fff; font-size:1.05rem; }
+  .sheet-head span { color:var(--gold); font-size:.8rem; letter-spacing:.07em; text-transform:uppercase; }
+  .sheet table { width:100%; border-collapse:collapse; font-size:.95rem; }
+  .sheet td { padding:.6rem 1.1rem; border-top:1px solid var(--line); vertical-align:middle; }
+  .sheet tr:first-child td { border-top:none; }
+  .sheet td.lim { white-space:nowrap; font-weight:600; color:var(--navy); width:11rem; }
+  .bar { height:7px; background:var(--gold); display:block; margin-top:.3rem; max-width:100%; }
+  .sheet .note { padding:.7rem 1.1rem; background:var(--wash); font-size:.85rem; color:var(--dim);
+                 border-top:1px solid var(--line); }
+
+  /* rubric cards */
+  .rubric { display:grid; grid-template-columns:repeat(auto-fit, minmax(230px, 1fr)); gap:1rem; margin-top:1.4rem; }
+  .fcard { border:2px solid var(--navy); padding:1.1rem 1.2rem; border-radius:10px; background:var(--white); }
+  .fcard .fid { font-family:"Fraunces", serif; font-weight:700; color:var(--gold-deep); font-size:1.15rem; }
+  .fcard h3 { font-size:1.02rem; margin:.25rem 0 .45rem; }
+  .fcard p { font-size:.9rem; color:var(--dim); }
+  .scorepath { margin-top:1.6rem; background:var(--wash); border:1px solid var(--line); border-radius:10px;
+               padding:1.1rem 1.3rem; max-width:46rem; }
+  .scorepath b { color:var(--navy); }
+
+  /* career pathway */
+  .pathwrap { margin-top:1.6rem; }
+  .pathway { display:grid; grid-template-columns:repeat(5, minmax(150px, 1fr)); gap:0;
+             overflow-x:auto; border:2px solid var(--navy); }
+  .pstage { padding:.9rem .8rem 1rem; border-left:1px solid var(--line); position:relative; }
+  .pstage:first-child { border-left:none; }
+  .pstage h3 { font-size:.86rem; font-family:"Source Sans 3", sans-serif; text-transform:uppercase;
+               letter-spacing:.05em; color:#fff; background:var(--navy); margin:-0.9rem -0.8rem .8rem;
+               padding:.5rem .8rem .45rem; min-height:3.1rem; display:flex; align-items:center; }
+  .pstage:not(:last-child) h3::after { content:"\00BB"; color:var(--gold); margin-left:auto; padding-left:.4rem; }
+  .chip { display:block; font-size:.8rem; line-height:1.35; border:1.5px solid var(--navy);
+          border-radius:7px; padding:.32rem .5rem; margin:.35rem 0; color:var(--navy); font-weight:600; }
+  .chip.inst { border-style:dashed; background:var(--wash); font-weight:400; }
+  .chip.you { background:var(--gold); border-color:var(--gold-deep); color:var(--navy-deep); }
+  .chip.you small { display:block; font-size:.68rem; font-weight:600; text-transform:uppercase;
+                    letter-spacing:.06em; color:var(--navy-deep); opacity:.75; }
+  .pathlegend { display:flex; gap:1.4rem; flex-wrap:wrap; margin-top:.7rem; font-size:.82rem; color:var(--dim); }
+  .pathlegend .sw { display:inline-block; width:.85rem; height:.85rem; border:1.5px solid var(--navy);
+                    border-radius:3px; vertical-align:-2px; margin-right:.35rem; }
+  .pathlegend .instsw { border-style:dashed; background:var(--wash); }
+  @media (max-width:720px) { .pathway { grid-template-columns:repeat(5, 168px); } }
+
+  .medcall { border:2px solid var(--gold-deep); border-radius:12px; background:#fdf8ec;
+             padding:1.2rem 1.4rem; margin:1.8rem 0; }
+  .medcall h3 { font-size:1.12rem; margin-bottom:.5rem; }
+  .medcall ul { margin:.6rem 0 .8rem 1.2rem; }
+  .medcall li { margin:.35rem 0; font-size:.95rem; }
+  .medcall b { color:var(--gold-deep); }
+
+  .repo-cta { margin-top:1.6rem; display:inline-block; background:var(--navy); color:#fff;
+              padding:.8rem 1.4rem; font-weight:600; text-decoration:none; }
+  .repo-cta:hover { background:var(--navy-deep); color:var(--gold); }
+  .looklist { margin:1rem 0 0 1.2rem; }
+  .looklist li { margin:.35rem 0; }
+  code { background:var(--wash); border:1px solid var(--line); padding:.1rem .4rem;
+         border-radius:5px; font-size:.86em; }
+
+  footer { margin-top:5rem; border-top:3px solid var(--navy); padding:1.3rem 0 0;
+           color:var(--dim); font-size:.88rem; display:flex; justify-content:space-between;
+           flex-wrap:wrap; gap:.5rem; }
+  footer b { color:var(--navy); }
+
+  @media (prefers-reduced-motion:no-preference) {
+    .hero h1, .lede, .confess { animation:rise .55s ease-out both; }
+    .lede { animation-delay:.08s; } .confess { animation-delay:.16s; }
+    @keyframes rise { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+  }
 </style>
 </head>
 <body>
 <main>
-<h1>An F31 diagnostician I built and then forgot to submit</h1>
-<p class="date">August 9, 2026</p>
 
-<p>This was built for a competition with a hard deadline of 11:59 PM the night before this post. The build finished, passed its own verification gate, and then sat there waiting on a final go that never came because I didn't get around to it. So instead of a submission, it's a repo. Posting it for fun.</p>
+<header class="hero">
+  <span class="kicker">Posted for fun</span>
+  <h1>A machine that explains <em>why the grant didn't get funded</em></h1>
+  <p class="lede">This is the write-up for a small system I built: it reads a rejected NIH F31 fellowship application next to its reviewer critique and works out which known failure mode sank it. Every piece of it is plain text and one shell script.</p>
+  <p class="confess">Full honesty: this was built for a competition with a hard 11:59 PM deadline. It finished, it passed its own 78-check verification gate, and then I didn't get around to submitting it. So it lives here now.</p>
+</header>
 
-<p>What it is: a pipeline that reads a graduate fellowship application (the NIH F31 kind) alongside its reviewer critique and works out <em>why</em> it scored the way it did. Five stages: intake, extraction, matching against a table of known failure modes, verification, and a diagnosis write-up. If the critique doesn't actually match any known failure mode, it refuses to invent one and writes a no-diagnosis file instead. That refusal path is tested.</p>
+<section class="prose">
+  <h2><span class="no">01</span>First, what is an F31?</h2>
+  <p>The F31 is a fellowship from the National Institutes of Health that pays for a PhD student's dissertation research, usually two to three years of stipend and tuition support. Around 1,800 of them are active at any time, and the top ten universities hold about 30% of those awards.</p>
+  <p>Applying is a paperwork gauntlet with strict page limits, and a panel of reviewers scores the result. Most applications are not funded. When yours isn't, you get back a critique document and a score, and it is on you to figure out what actually went wrong. That gap is what this project attacks.</p>
+</section>
 
-<h2>What I like about it</h2>
-<ul>
-  <li>The whole thing is plain markdown contracts and a shell verify gate. No framework. An agent lands in the repo, reads one 42-line entry file, and knows where it is and what to do next.</li>
-  <li>The gate has 78 checks and, more importantly, a selftest that injects four defects to prove the gate can fail. During the build it caught a real bug in itself: a grep flag that BSD grep silently ignores, which had it passing on a tree that should have failed.</li>
-  <li>Reconstructed example cases are labeled as reconstructed on line one, and a negative-control case exists where the correct answer is "no diagnosis."</li>
-</ul>
+<section>
+  <h2><span class="no">02</span>What the diagnostician does</h2>
+  <p class="prose">You hand it an application plus its critique. It runs five stages, each a folder with a written contract for what comes in and what goes out:</p>
+  <ol class="stages">
+    <li><div><b>Intake.</b> A questionnaire pins down the basics: which institute, first submission or resubmission, what score came back.</div></li>
+    <li><div><b>Extract.</b> Pulls the claims, aims, and reviewer complaints out of the documents into structured records.</div></li>
+    <li><div><b>Match.</b> Compares those complaints against a table of known F31 failure modes.</div></li>
+    <li><div><b>Verify.</b> Checks every match against the source text. No citation, no match.</div></li>
+    <li><div><b>Diagnose.</b> Writes the verdict in plain language. If the critique matches nothing in the table, it says so and refuses to invent a cause. That refusal path has its own test case.</div></li>
+  </ol>
+</section>
 
-<h2>Where to look</h2>
-<ul>
-  <li><code>README.md</code>, then the how-to-run section.</li>
-  <li><code>verify-evidence.txt</code> for the full gate output and the walk-test transcript.</li>
-  <li><code>_shared/rules/failure-modes.md</code> for the diagnosis table itself.</li>
-</ul>
+<section>
+  <h2><span class="no">03</span>The paperwork it has to understand</h2>
+  <p class="prose">Part of why diagnosis is even possible: the F31 is rigidly structured. Every component has a hard length limit, so complaints can be traced to a specific, bounded document. The bars show each limit relative to the largest.</p>
+  <div class="sheet">
+    <div class="sheet-head"><h3>F31 application components</h3><span>Length limits</span></div>
+    <table>
+      <tr><td>Abstract<span class="bar" style="width:8%"></span></td><td class="lim">30 lines of text</td></tr>
+      <tr><td>Project Narrative<span class="bar" style="width:4%"></span></td><td class="lim">3 sentences</td></tr>
+      <tr><td>Candidate Biosketch<span class="bar" style="width:83%"></span></td><td class="lim">5 pages</td></tr>
+      <tr><td>Sponsor Biosketch<span class="bar" style="width:83%"></span></td><td class="lim">5 pages</td></tr>
+      <tr><td>Candidate Goals, Preparedness, and Potential<span class="bar" style="width:50%"></span></td><td class="lim">3 pages</td></tr>
+      <tr><td>Training Activities and Timelines<span class="bar" style="width:50%"></span></td><td class="lim">3 pages</td></tr>
+      <tr><td>Research Training Project Specific Aims<span class="bar" style="width:17%"></span></td><td class="lim">1 page</td></tr>
+      <tr><td>Research Training Project Strategy<span class="bar" style="width:100%"></span></td><td class="lim">6 pages</td></tr>
+      <tr><td>Sponsor(s) Commitment<span class="bar" style="width:100%"></span></td><td class="lim">6 pages</td></tr>
+      <tr><td>Letters of Support from Collaborators<span class="bar" style="width:100%"></span></td><td class="lim">6 pages</td></tr>
+      <tr><td>3&ndash;5 Reference Letters<span class="bar" style="width:33%"></span></td><td class="lim">2 pages each</td></tr>
+    </table>
+    <div class="note">Biosketches are the NIH-format CV. Limits per the current NIH fellowship application guide.</div>
+  </div>
+</section>
 
-<p>Would it have placed? No idea. That's part of the fun of shipping it late.</p>
+<section>
+  <h2><span class="no">04</span>How reviewers score it</h2>
+  <p class="prose">Since January 2025, fellowship review uses a three-factor rubric. The diagnostician encodes this rubric as a schema-checked JSON file, and its verification gate validates the encoding on every run.</p>
+  <div class="rubric">
+    <div class="fcard"><span class="fid">F1</span><h3>Candidate's preparedness and potential</h3><p>Scored 1 to 9. Lower is better.</p></div>
+    <div class="fcard"><span class="fid">F2</span><h3>Research training plan</h3><p>Scored 1 to 9. Lower is better.</p></div>
+    <div class="fcard"><span class="fid">F3</span><h3>Sponsor and institutional commitment</h3><p>Not numbered. Rated "appropriate" or flagged for gaps.</p></div>
+  </div>
+  <div class="scorepath">
+    <b>From scores to a decision:</b> discussed applications get an overall impact score from 10 (best) to 90, which converts to a percentile against the study section's recent history. Each NIH institute funds applications inside its payline, which for fellowships has typically run somewhere in the 15th to 25th percentile band. Outside the payline is the outcome this tool exists to explain.
+  </div>
+</section>
+
+<section class="prose">
+  <h2><span class="no">05</span>Where this carries over</h2>
+  <p>Nothing in the pipeline is F31-specific except two data files: the failure-mode table and the rubric. The rubric file already declares itself valid for the F30, F31, F32, and F33, because NIH moved all four fellowship types onto the same three-factor review in 2025. Swapping the two data files retargets the whole system.</p>
+  <p>NIH funds an entire research career as a relay of awards, stage by stage. Each handoff is its own application, its own review, its own way to be rejected with a critique in hand. That makes the whole pathway addressable:</p>
+
+  <div class="pathwrap">
+    <div class="pathway">
+      <div class="pstage">
+        <h3>Undergraduate</h3>
+        <span class="chip inst">R25 education programs</span>
+        <span class="chip inst">Summer internships</span>
+      </div>
+      <div class="pstage">
+        <h3>Graduate / medical school</h3>
+        <span class="chip you">F31 <small>proven here</small></span>
+        <span class="chip">F30 dual-degree</span>
+        <span class="chip inst">T32 training grant</span>
+        <span class="chip inst">T35 short-term</span>
+      </div>
+      <div class="pstage">
+        <h3>Postdoctoral</h3>
+        <span class="chip">F32 fellowship</span>
+        <span class="chip">K99/R00 fast-track</span>
+      </div>
+      <div class="pstage">
+        <h3>Transition / junior faculty</h3>
+        <span class="chip">K01 research</span>
+        <span class="chip">K08, K23 clinical</span>
+        <span class="chip inst">K12 institutional</span>
+      </div>
+      <div class="pstage">
+        <h3>Faculty / tenured</h3>
+        <span class="chip">R01 investigator award</span>
+        <span class="chip">K24 mid-career mentoring</span>
+      </div>
+    </div>
+    <div class="pathlegend">
+      <span><i class="sw"></i> Individual award: one applicant, one critique. Direct fit for the pipeline.</span>
+      <span><i class="sw instsw"></i> Institutional award: a program applies. Same shape, bigger documents.</span>
+    </div>
+  </div>
+
+  <div class="medcall">
+    <h3>Where it helps most: med school students</h3>
+    <p>The medical-school column is the busiest handoff on that map, and the one this system is built closest to. If you're an MD or MD/PhD student, the awards that fund you are:</p>
+    <ul>
+      <li><b>T35</b> pays for the summer research block, usually after first year. Your school holds the grant; you apply internally.</li>
+      <li><b>F30</b> funds the full MD/PhD dual degree, both phases. Applied for directly, reviewed on the same three-factor rubric this tool already encodes.</li>
+      <li><b>F31</b> covers the PhD phase for dual-degree students outside a formal MSTP slot. This is the award the diagnostician is proven on.</li>
+    </ul>
+    <p>A rejected F30 or F31 costs a med student a resubmission cycle, which can mean a full extra year against a fixed curriculum calendar. Reading the critique correctly the first time is the whole game, and that is the exact job this pipeline does. F30 support is a rubric-file swap away.</p>
+  </div>
+
+  <p>The nearby pivots, in rough order of distance: the other fellowships (F30, F32, F33) are a config change, since they share the 2025 rubric. The K series and training grants (T32, T35, K12) need a new failure-mode table but keep the same diagnosis shape: bounded documents, a written critique, a payline. Past NIH, any scored funding application fits, from NSF proposals to foundation grants to SBIR submissions. Wherever a rejection arrives with a written critique and a rubric, the intake-extract-match-verify-diagnose chain applies, and the refusal path matters more, since new failure-mode tables start out thin.</p>
+  <p>That's the value anchor: not an F31 gadget, but a grant-diagnostics pattern, proven first at the F31 handoff and pointed at the rest of the relay.</p>
+</section>
+
+<section class="prose">
+  <h2><span class="no">06</span>Why I think the build is interesting</h2>
+  <p>There is no framework here. The whole system is markdown contracts, JSON with a self-declared schema, and one verification gate in shell. A fresh agent dropped into the repo reads a 42-line entry file and knows where it is and what to do next. That was tested cold, and the transcript is in the repo.</p>
+  <p>The gate runs 78 checks, and it has a selftest that injects four deliberate defects to prove the gate can still fail. During the build, that selftest caught a real bug in the gate itself: a grep flag that BSD grep silently ignores, which had one check passing on a tree that should have failed. A gate that polices itself earned some trust that day.</p>
+  <a class="repo-cta" href="https://github.com/InsightfulMinds/f31-diagnostician">Read the source on GitHub</a>
+  <ul class="looklist">
+    <li><code>README.md</code> for how to run it, including the economics of doing so.</li>
+    <li><code>verify-evidence.txt</code> for the full gate output and cold walk-test transcript.</li>
+    <li><code>_shared/rules/failure-modes.md</code> for the diagnosis table itself.</li>
+  </ul>
+</section>
+
+<footer>
+  <span><b>The F31 Diagnostician</b> &middot; built August 2026</span>
+  <span>Example cases in the repo are reconstructed, labeled as such on line one.</span>
+</footer>
+
 </main>
 </body>
 </html>
