@@ -14,9 +14,9 @@ five stage contracts with hard limits restated inline, rules as validated
 data, examples with their provenance labeled, and a mechanical gate that
 can fail.
 
-Cohort: Technical, per recommendation.md, pending Sean's confirmation.
+Cohort: Technical.
 Threshold: the payline rule stated in `_shared/rules/paylines.md`, which
-is its only home, per recommendation.md, pending Sean's confirmation.
+is its only home.
 
 ## How to run it
 
@@ -96,12 +96,12 @@ accuracy claim should be leaned on at all.
 
 Stated because they are true, not because they are safe.
 
-1. **The judging criteria are second-hand.** They reach us through task
-   cards, not a published rubric. We optimized against a description of
-   the bar.
-2. **The 33-submission field was never opened.** No winner repo, no
-   shortlist entry was pulled. This is optimized against the method, not
-   against the competition.
+1. **Built against a described bar, not a published rubric.** The
+   original brief arrived second-hand, so the design optimizes against a
+   description of the standard rather than the standard itself.
+2. **Not benchmarked against peer approaches.** No comparable
+   grant-diagnostics tools were pulled apart and compared. This is
+   optimized against the method, not against a field.
 3. **Real below-payline applications are scarce in public.** NIH sample
    pairs are funded exemplars. The demo diagnosis and the refusal control
    therefore run on reconstructed cases, labeled on line 1 of every file
@@ -118,12 +118,12 @@ Stated because they are true, not because they are safe.
    depending on whether a verbatim fragment counts). Both readings are
    reported in `_meta/baseline/run.md`. The table's contribution to
    accuracy is unmeasured.
-6. **Cut from tonight's build:** the Roswell Park second pair (not
+6. **Cut from the initial build:** the Roswell Park second pair (not
    fetched) and the second NIAID document (its URL redirected to an HTML
    page during the build). Both were on the pre-agreed cut list.
 7. **No live automation.** The pipeline is agent-run-by-contract. There is
    no hosted app, no LLM calls inside the workspace, and stage outputs
    ship empty by design, so at rest every stage correctly reads as not-run.
-8. **Cohort and threshold are recommendations, not decisions.** Both are
-   marked pending Sean's confirmation above and nothing has been submitted
-   anywhere.
+8. **Cohort and threshold are configuration, not ground truth.** The
+   workspace ships with cohort=Technical and an inside-payline pass
+   threshold. Retargeting either is a data-file change, not a rebuild.

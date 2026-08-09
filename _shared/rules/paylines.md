@@ -4,9 +4,8 @@
 
 A submission PASSES when its percentile is at or inside the assigned
 IC's published payline for the fiscal year and activity code. Outside
-the payline is the failure this workspace explains. Cohort and threshold
-follow recommendation.md and are PENDING Sean's confirmation at the
-packaging step.
+the payline is the failure this workspace explains. This workspace ships
+with cohort=Technical and the inside-payline threshold.
 
 ## How scores become a payline decision
 
