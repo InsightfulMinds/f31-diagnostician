@@ -305,7 +305,6 @@
   <p>The gate runs 78 checks, and it has a selftest that injects four deliberate defects to prove the gate can still fail. During the build, that selftest caught a real bug in the gate itself: a grep flag that BSD grep silently ignores, which had one check passing on a tree that should have failed. A gate that polices itself earned some trust that day.</p>
   <div class="why"><b>Why it matters</b><span>You do not have to trust the diagnosis. You can run the gate and watch it try to fail.</span></div>
   <a class="repo-cta" href="https://github.com/InsightfulMinds/f31-diagnostician">Read the source on GitHub</a>
-  <a class="repo-cta alt" href="prompts.html">Image prompt kit for the diagrams</a>
   <ul class="looklist">
     <li><code>README.md</code> for how to run it, including the economics of doing so.</li>
     <li><code>verify-evidence.txt</code> for the full gate output and cold walk-test transcript.</li>
