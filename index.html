@@ -120,7 +120,20 @@
   code { background:var(--wash); border:1px solid var(--line); padding:.1rem .4rem;
          border-radius:5px; font-size:.86em; }
 
-  /* parallax bands */
+  /* side rails: chevrons inviting into center, wide screens only */
+  body::before, body::after {
+    content:""; position:fixed; top:0; bottom:0; width:34px; z-index:0; pointer-events:none;
+    background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="34" height="72" viewBox="0 0 34 72"><path d="M8 12 L24 36 L8 60" fill="none" stroke="%231C2D5E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.10"/><path d="M8 30 L14 36 L8 42" fill="none" stroke="%23E8A820" stroke-width="2" stroke-linecap="round" opacity="0.35"/></svg>');
+    background-repeat:repeat-y; background-position:center top;
+  }
+  body::before { left:2vw; }
+  body::after  { right:2vw; transform:scaleX(-1); }
+  @media (max-width:1099px) { body::before, body::after { display:none; } }
+  @media (prefers-reduced-motion:no-preference) {
+    body::before { animation:railL 22s linear infinite; }
+    body::after  { animation:railL 22s linear infinite; }
+    @keyframes railL { from { background-position-y:0; } to { background-position-y:72px; } }
+  }
   .band { position:relative; margin:4.5rem calc(50% - 50vw) 0; padding:7rem 1.4rem;
           background-image:linear-gradient(rgba(21,35,75,.78), rgba(21,35,75,.78)), url("assets/med-students.webp");
           background-size:cover; background-position:center 30%; background-attachment:fixed; }
