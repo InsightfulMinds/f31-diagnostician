@@ -1,0 +1,41 @@
+{
+  "_label": "RECONSTRUCTED - derived from a reconstructed case; not real reviewer language.",
+  "case_id": "CASE-05-KOVACS",
+  "face_page": {
+    "impact_score": { "raw": 35, "type": "impact_10_90", "scored": 65 },
+    "percentile": { "raw": 25, "type": "percentile_0_100" },
+    "payline": 20,
+    "outcome": "unfunded, outside payline"
+  },
+  "grid": {
+    "F1": {
+      "reviewer_1": { "raw": 3, "scored": 7, "type": "criterion_1_9" },
+      "reviewer_2": { "raw": 4, "scored": 6, "type": "criterion_1_9" },
+      "reviewer_3": { "raw": 3, "scored": 7, "type": "criterion_1_9" }
+    },
+    "F2": {
+      "reviewer_1": { "raw": 6, "scored": 4, "type": "criterion_1_9" },
+      "reviewer_2": { "raw": 6, "scored": 4, "type": "criterion_1_9" },
+      "reviewer_3": { "raw": 5, "scored": 5, "type": "criterion_1_9" }
+    },
+    "F3": {
+      "reviewer_1": { "value": "appropriate", "type": "categorical_commitment" },
+      "reviewer_2": { "value": "appropriate", "type": "categorical_commitment" },
+      "reviewer_3": { "value": "appropriate", "type": "categorical_commitment" }
+    }
+  },
+  "critique_quotes": [
+    { "id": "q1", "reviewer": "reviewer_1", "factor": "F2", "polarity": "weakness",
+      "quote": "Aims 2 and 3 each presuppose that the transporter identified in Aim 1 is the biologically relevant target; no alternative path is described should the screen fail to validate." },
+    { "id": "q2", "reviewer": "reviewer_2", "factor": "F2", "polarity": "weakness",
+      "quote": "The overall plan is contingent on the initial screen yielding a validated hit before year three." },
+    { "id": "q3", "reviewer": "reviewer_3", "factor": "F2", "polarity": "weakness",
+      "quote": "Completing all three aims in the remaining time may be difficult if the Aim 1 screen must be repeated." }
+  ],
+  "located_excerpts": [
+    { "id": "x1", "source": "application", "section": "Specific Aims",
+      "excerpt": "Aim 1 will identify the dominant efflux transporter by genome-wide CRISPR screen. Aim 2 will characterize the substrate specificity of the transporter identified in Aim 1. Aim 3 will test small-molecule inhibitors of the Aim 1 transporter in the infection model." }
+  ],
+  "n_items": 15,
+  "n_warnings": 0
+}

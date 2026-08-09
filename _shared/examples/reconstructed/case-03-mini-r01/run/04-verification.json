@@ -1,0 +1,19 @@
+{
+  "_label": "RECONSTRUCTED - derived from a reconstructed case; not real reviewer language.",
+  "case_id": "CASE-03-LINDQVIST",
+  "validations": [
+    { "value": 40, "type": "impact_10_90", "is_valid": true, "message": "40 within 10-90" },
+    { "value": 30, "type": "percentile_0_100", "is_valid": true, "message": "30 within 0-100" },
+    { "value": 6, "type": "criterion_1_9", "is_valid": true, "message": "6 within 1-9" },
+    { "value": 5, "type": "criterion_1_9", "is_valid": true, "message": "5 within 1-9" },
+    { "value": 4, "type": "criterion_1_9", "is_valid": true, "message": "4 within 1-9" },
+    { "value": "appropriate", "type": "categorical_commitment", "is_valid": true, "message": "member of {appropriate, gaps_flagged}" }
+  ],
+  "candidates": [
+    { "mode": "mode-01-mini-r01", "quote_ids": ["q1", "q2", "q3"], "quote_count": 3,
+      "grid_supported": true, "moved_cell": "F1", "excerpt_ids": ["x1"], "supported": true,
+      "note": "x1 argues the experiments as a resolution to a question in the field. No sentence ties either aim to a skill this candidate lacks or a goal this candidate stated. That is the standalone-science shape the reviewers described." }
+  ],
+  "n_items": 15,
+  "n_warnings": 0
+}

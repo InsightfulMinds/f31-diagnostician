@@ -1,0 +1,23 @@
+{
+  "_label": "RECONSTRUCTED - derived from a reconstructed case; not real reviewer language.",
+  "case_id": "CASE-05-KOVACS",
+  "validations": [
+    { "value": 35, "type": "impact_10_90", "is_valid": true, "message": "35 within 10-90" },
+    { "value": 25, "type": "percentile_0_100", "is_valid": true, "message": "25 within 0-100" },
+    { "value": 3, "type": "criterion_1_9", "is_valid": true, "message": "3 within 1-9" },
+    { "value": 4, "type": "criterion_1_9", "is_valid": true, "message": "4 within 1-9" },
+    { "value": 5, "type": "criterion_1_9", "is_valid": true, "message": "5 within 1-9" },
+    { "value": 6, "type": "criterion_1_9", "is_valid": true, "message": "6 within 1-9" },
+    { "value": "appropriate", "type": "categorical_commitment", "is_valid": true, "message": "member of {appropriate, gaps_flagged}" }
+  ],
+  "candidates": [
+    { "mode": "mode-03-interdependent-aims", "quote_ids": ["q1", "q2"], "quote_count": 2,
+      "grid_supported": true, "moved_cell": "F2", "excerpt_ids": ["x1"], "supported": true,
+      "note": "x1 shows the structure the reviewers described: Aim 2 characterizes the transporter identified in Aim 1 and Aim 3 tests inhibitors of the Aim 1 transporter. Both later aims collapse if the Aim 1 hypothesis fails, and no fallback appears in the excerpt." },
+    { "mode": "mode-08-infeasible-timeline", "quote_ids": ["q3"], "quote_count": 1,
+      "grid_supported": true, "moved_cell": "F2", "excerpt_ids": [], "supported": false,
+      "note": "One quote, sitting on the same moved cell, but no located excerpt shows a scope-versus-years problem; x1 shows dependency, not volume. The quoted timeline risk is conditional on repeating Aim 1." }
+  ],
+  "n_items": 15,
+  "n_warnings": 0
+}

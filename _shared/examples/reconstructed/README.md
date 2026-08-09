@@ -11,6 +11,18 @@ on reconstructed cases whose provenance is stated on line 1 of every file.
 - `case-02-refusal/` unfunded, critique language that maps to NOTHING in
   the table. Must produce `no-diagnosis.md`. This is the negative control,
   and it is the case a tool is tempted to force.
+- `case-03-mini-r01/` unfunded, standalone-science shape. Targets a
+  different mode than case 01. Produces one primary cause.
+- `case-04-weak-sponsor/` unfunded, strong candidate, thin sponsor case
+  with F3 gaps_flagged. Produces one primary cause.
+- `case-05-hard-nearmiss/` unfunded, hard case: no phrase map string
+  appears verbatim, all matches are ladder-strategy-4 paraphrases, and one
+  bullet points at a tempting wrong mode that must be declined at the
+  threshold. Produces one primary cause.
+
+Each case's `run/` holds a full pipeline execution (extraction, matches,
+verification, diagnosis or refusal). Cases 01 and 03 through 05 also feed
+the baseline arm in `_meta/baseline/`.
 
 `verify-gate.sh` greps the whole tree for distinctive strings from these
 cases. A hit outside this folder is a FAIL.

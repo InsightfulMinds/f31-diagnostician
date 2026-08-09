@@ -1,0 +1,20 @@
+{
+  "_label": "RECONSTRUCTED - derived from a reconstructed case; not real reviewer language.",
+  "case_id": "CASE-04-OYELARAN",
+  "validations": [
+    { "value": 38, "type": "impact_10_90", "is_valid": true, "message": "38 within 10-90" },
+    { "value": 27, "type": "percentile_0_100", "is_valid": true, "message": "27 within 0-100" },
+    { "value": 3, "type": "criterion_1_9", "is_valid": true, "message": "3 within 1-9" },
+    { "value": 4, "type": "criterion_1_9", "is_valid": true, "message": "4 within 1-9" },
+    { "value": 5, "type": "criterion_1_9", "is_valid": true, "message": "5 within 1-9" },
+    { "value": "gaps_flagged", "type": "categorical_commitment", "is_valid": true, "message": "member of {appropriate, gaps_flagged}" },
+    { "value": "appropriate", "type": "categorical_commitment", "is_valid": true, "message": "member of {appropriate, gaps_flagged}" }
+  ],
+  "candidates": [
+    { "mode": "mode-04-weak-sponsor-case", "quote_ids": ["q1", "q2", "q3"], "quote_count": 3,
+      "grid_supported": true, "moved_cell": "F2", "excerpt_ids": ["x1"], "supported": true,
+      "note": "x1 asserts equipment and core access and nothing else. It contains no funding plan for the unbudgeted years and no trainee outcomes, which are the two absences the reviewers flagged. F2 is the moved numeric cell and F3 is gaps_flagged by two reviewers, matching this mode's grid signature." }
+  ],
+  "n_items": 15,
+  "n_warnings": 0
+}

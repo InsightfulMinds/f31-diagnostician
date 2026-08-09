@@ -1,0 +1,15 @@
+{
+  "_label": "RECONSTRUCTED - derived from a reconstructed case; not real reviewer language.",
+  "case_id": "CASE-04-OYELARAN",
+  "grid_reading": "F2 is the moved numeric cell: 5/5/4 against F1 at 3/3/4, and F3 is gaps_flagged by two of three reviewers. The candidate factor is strong; the commitment and environment side is where this application lost.",
+  "matches": [
+    { "quote_id": "q1", "mode": "mode-04-weak-sponsor-case", "strategy": 2, "paraphrase": false, "ambiguous": false, "unmatched": false,
+      "map_phrase": "additional expertise or resources" },
+    { "quote_id": "q2", "mode": "mode-04-weak-sponsor-case", "strategy": 2, "paraphrase": false, "ambiguous": false, "unmatched": false,
+      "map_phrase": "how the research will be funded" },
+    { "quote_id": "q3", "mode": "mode-04-weak-sponsor-case", "strategy": 2, "paraphrase": false, "ambiguous": false, "unmatched": false,
+      "map_phrase": "sponsor's record of trainee outcomes" }
+  ],
+  "n_items": 15,
+  "n_warnings": 0
+}

@@ -1,0 +1,15 @@
+{
+  "_label": "RECONSTRUCTED - derived from a reconstructed case; not real reviewer language.",
+  "case_id": "CASE-03-LINDQVIST",
+  "grid_reading": "F1 is the moved cell: 6/5/6 against F2 at 4/4/4. F1 lags F2 at every reviewer while the science factor holds midrange. F3 appropriate across the panel.",
+  "matches": [
+    { "quote_id": "q1", "mode": "mode-01-mini-r01", "strategy": 2, "paraphrase": false, "ambiguous": false, "unmatched": false,
+      "map_phrase": "connection between the project and the candidate's training goals is unclear" },
+    { "quote_id": "q2", "mode": "mode-01-mini-r01", "strategy": 2, "paraphrase": false, "ambiguous": false, "unmatched": false,
+      "map_phrase": "training value of the proposed work is not articulated" },
+    { "quote_id": "q3", "mode": "mode-01-mini-r01", "strategy": 4, "paraphrase": true, "ambiguous": false, "unmatched": false,
+      "map_phrase": "training value of the proposed work is not articulated" }
+  ],
+  "n_items": 15,
+  "n_warnings": 0
+}

@@ -37,6 +37,37 @@ Worked examples, end to end, live in
 `_shared/examples/reconstructed/case-01-below-payline/run/` (a diagnosis)
 and `_shared/examples/reconstructed/case-02-refusal/run/` (a refusal).
 
+### Run it
+
+The repeatable shape is: input = one case directory holding the two case
+documents (`application*`, `summary-statement*`); output = one
+self-contained `report.html` in that directory.
+
+```
+bin/diagnose.sh <case-dir>       # walk stages 01-05, then render
+node bin/render-report.mjs <case-dir>   # render only, from an existing run/
+```
+
+`bin/diagnose.sh` is a contract-walker, not a framework: it invokes each
+stage as `claude -p "<stage prompt>"` when the `claude` CLI is on PATH,
+pointing the agent at that stage's `CONTEXT.md` and nothing else. Without
+the CLI it prints the exact per-stage instructions an agent must follow
+and exits 2. It stops on a missing document (exit 1) and on a stage-01
+`blocked.md`, then collects the stage outputs into `<case-dir>/run/` and
+renders.
+
+`bin/render-report.mjs` (Node 22, zero dependencies) reads
+`<case-dir>/run/` (`02-extraction.json`, `03-matches.json`, optional
+`04-verification.json`, and `05-diagnosis.md` or `05-no-diagnosis.md`)
+and writes `report.html`: the named primary cause or the refusal styled
+as a refusal, the evidence chain with quote and excerpt citations, the
+matched modes, and the case metadata. Both example cases render:
+
+```
+node bin/render-report.mjs _shared/examples/reconstructed/case-01-below-payline
+node bin/render-report.mjs _shared/examples/reconstructed/case-02-refusal
+```
+
 ## Why the pipeline is shaped this way
 
 Extraction is siloed from synthesis. Stage 02 reads the documents and
@@ -89,8 +120,9 @@ accuracy claim should be leaned on at all.
   in `verify-evidence.txt`.
 - The baseline arm, with its metric declared before the run, is in
   `_meta/baseline/`. Read it before believing the failure-mode table adds
-  accuracy: on this one case it did not. What it added was a canonical
-  mode id and complete rather than spliced quotations.
+  accuracy: on the four reconstructed cases measured it did not. What it
+  added was canonical mode ids and complete rather than spliced or
+  fragmentary quotations.
 
 ## GAPS
 
@@ -103,27 +135,42 @@ Stated because they are true, not because they are safe.
    grant-diagnostics tools were pulled apart and compared. This is
    optimized against the method, not against a field.
 3. **Real below-payline applications are scarce in public.** NIH sample
-   pairs are funded exemplars. The demo diagnosis and the refusal control
-   therefore run on reconstructed cases, labeled on line 1 of every file
-   and grepped for tree-wide so reconstructed text cannot pass as real
-   reviewer language anywhere else.
+   pairs are funded exemplars. The demo diagnosis, the refusal control,
+   and the three additional cases added for the baseline arm (cases 03
+   through 05) therefore all run on reconstructed cases, labeled on line 1
+   of every file and grepped for tree-wide so reconstructed text cannot
+   pass as real reviewer language anywhere else. Five reconstructed cases
+   are still zero real cases; breadth here is not realism.
 4. **The real pair is from a pre-2025 review round.** The NIAID Schwartz
    summary statement (impact 17, funded) uses the five-criterion format.
    It is used for extraction fidelity only, with a lossy heading map
    recorded in `expected-extraction.json`. No public F31 pair reviewed
    under the 2025 three-factor criteria was available at build time.
-5. **The baseline arm is n=1.** One case, one model, one run, on a
-   reconstructed case, with a metric that turned out to admit two
-   readings (score 1 or 4 for the baseline against 4 for the treatment,
-   depending on whether a verbatim fragment counts). Both readings are
-   reported in `_meta/baseline/run.md`. The table's contribution to
-   accuracy is unmeasured.
+5. **The baseline arm is n=4, all reconstructed.** The original n=1 run
+   used a metric that admitted two readings (score 1 or 4 for the
+   baseline, depending on whether a verbatim fragment counts); that
+   record is kept as-is in `_meta/baseline/run.md`. The ambiguity was
+   then resolved to the strict reading (a quote counts only as one
+   complete critique bullet, character for character; rationale in
+   `_meta/baseline/metric.md`) and the arm was extended to four
+   diagnosable cases. Strict totals: treatment 15, baseline 7; the
+   baseline named zero exact mode ids in all four runs but reached a
+   substantively correct diagnosis in prose on every case, including the
+   hard near-miss case. So the measured contribution is still canonical
+   ids and complete quotation, not accuracy, now on n=4 instead of n=1,
+   and all four cases are reconstructed by the table's own authors, with
+   one baseline score partly a metric artifact (a dropped terminal
+   period). The table's contribution to accuracy remains unmeasured.
 6. **Cut from the initial build:** the Roswell Park second pair (not
    fetched) and the second NIAID document (its URL redirected to an HTML
    page during the build). Both were on the pre-agreed cut list.
-7. **No live automation.** The pipeline is agent-run-by-contract. There is
-   no hosted app, no LLM calls inside the workspace, and stage outputs
-   ship empty by design, so at rest every stage correctly reads as not-run.
+7. **Thin automation only.** `bin/diagnose.sh` walks the five stage
+   contracts and `bin/render-report.mjs` renders a run to one HTML page,
+   but the stages themselves are still LLM work: the walker either hands
+   each contract to the `claude` CLI or prints instructions for an agent
+   and exits. There is no hosted app, no LLM calls inside the workspace
+   itself, and stage outputs ship empty by design, so at rest every stage
+   correctly reads as not-run.
 8. **Cohort and threshold are configuration, not ground truth.** The
    workspace ships with cohort=Technical and an inside-payline pass
    threshold. Retargeting either is a data-file change, not a rebuild.

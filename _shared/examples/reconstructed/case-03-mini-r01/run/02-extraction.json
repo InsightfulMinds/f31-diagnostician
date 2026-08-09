@@ -1,0 +1,41 @@
+{
+  "_label": "RECONSTRUCTED - derived from a reconstructed case; not real reviewer language.",
+  "case_id": "CASE-03-LINDQVIST",
+  "face_page": {
+    "impact_score": { "raw": 40, "type": "impact_10_90", "scored": 60 },
+    "percentile": { "raw": 30, "type": "percentile_0_100" },
+    "payline": 22,
+    "outcome": "unfunded, outside payline"
+  },
+  "grid": {
+    "F1": {
+      "reviewer_1": { "raw": 6, "scored": 4, "type": "criterion_1_9" },
+      "reviewer_2": { "raw": 5, "scored": 5, "type": "criterion_1_9" },
+      "reviewer_3": { "raw": 6, "scored": 4, "type": "criterion_1_9" }
+    },
+    "F2": {
+      "reviewer_1": { "raw": 4, "scored": 6, "type": "criterion_1_9" },
+      "reviewer_2": { "raw": 4, "scored": 6, "type": "criterion_1_9" },
+      "reviewer_3": { "raw": 4, "scored": 6, "type": "criterion_1_9" }
+    },
+    "F3": {
+      "reviewer_1": { "value": "appropriate", "type": "categorical_commitment" },
+      "reviewer_2": { "value": "appropriate", "type": "categorical_commitment" },
+      "reviewer_3": { "value": "appropriate", "type": "categorical_commitment" }
+    }
+  },
+  "critique_quotes": [
+    { "id": "q1", "reviewer": "reviewer_1", "factor": "F1", "polarity": "weakness",
+      "quote": "The connection between the project and the candidate's training goals is unclear." },
+    { "id": "q2", "reviewer": "reviewer_2", "factor": "F1", "polarity": "weakness",
+      "quote": "The research strategy reads like an R01 scaled to a student timeline; the training value of the proposed work is not articulated." },
+    { "id": "q3", "reviewer": "reviewer_3", "factor": "F2", "polarity": "weakness",
+      "quote": "The science is compelling on its own terms, but the application does not state what the candidate will learn by doing it." }
+  ],
+  "located_excerpts": [
+    { "id": "x1", "source": "application", "section": "Research Strategy",
+      "excerpt": "Aim 1 will define the synaptic mechanism using paired recordings in acute slices; Aim 2 will extend the circuit map to behaving animals with fiber photometry. Together these experiments will resolve a long-standing question in the field." }
+  ],
+  "n_items": 15,
+  "n_warnings": 0
+}

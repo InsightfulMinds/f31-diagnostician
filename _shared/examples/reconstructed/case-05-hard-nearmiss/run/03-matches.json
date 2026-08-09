@@ -1,0 +1,18 @@
+{
+  "_label": "RECONSTRUCTED - derived from a reconstructed case; not real reviewer language.",
+  "case_id": "CASE-05-KOVACS",
+  "grid_reading": "F2 is the moved cell: 6/6/5 against F1 at 3/4/3. Every weakness bullet sits under F2 and every one concerns feasibility. F3 appropriate across the panel.",
+  "matches": [
+    { "quote_id": "q1", "mode": "mode-03-interdependent-aims", "strategy": 4, "paraphrase": true, "ambiguous": false, "unmatched": false,
+      "map_phrase": "aims are interdependent",
+      "note": "No map phrase appears verbatim. Head noun aims, complaint class dependency (presuppose, no alternative path). Strategies 1-3 did not fire." },
+    { "quote_id": "q2", "mode": "mode-03-interdependent-aims", "strategy": 4, "paraphrase": true, "ambiguous": false, "unmatched": false,
+      "map_phrase": "aims are contingent",
+      "note": "Contains contingent but not the map phrase verbatim; the subject is the plan, not the aims, so strategy 3 did not fire. Same head-noun class, same dependency complaint." },
+    { "quote_id": "q3", "mode": "mode-08-infeasible-timeline", "strategy": 4, "paraphrase": true, "ambiguous": false, "unmatched": false,
+      "map_phrase": "cannot be completed in the time",
+      "note": "Near-miss bullet. Paraphrases the timeline complaint, but the stated trigger is repetition of the Aim 1 screen, i.e. it is conditional on the dependency the other two bullets name. Recorded against mode-08 as the ladder directs; ranking is stage 05's job." }
+  ],
+  "n_items": 15,
+  "n_warnings": 0
+}

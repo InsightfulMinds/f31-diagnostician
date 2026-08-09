@@ -1,0 +1,41 @@
+{
+  "_label": "RECONSTRUCTED - derived from a reconstructed case; not real reviewer language.",
+  "case_id": "CASE-04-OYELARAN",
+  "face_page": {
+    "impact_score": { "raw": 38, "type": "impact_10_90", "scored": 62 },
+    "percentile": { "raw": 27, "type": "percentile_0_100" },
+    "payline": 18,
+    "outcome": "unfunded, outside payline"
+  },
+  "grid": {
+    "F1": {
+      "reviewer_1": { "raw": 3, "scored": 7, "type": "criterion_1_9" },
+      "reviewer_2": { "raw": 3, "scored": 7, "type": "criterion_1_9" },
+      "reviewer_3": { "raw": 4, "scored": 6, "type": "criterion_1_9" }
+    },
+    "F2": {
+      "reviewer_1": { "raw": 5, "scored": 5, "type": "criterion_1_9" },
+      "reviewer_2": { "raw": 5, "scored": 5, "type": "criterion_1_9" },
+      "reviewer_3": { "raw": 4, "scored": 6, "type": "criterion_1_9" }
+    },
+    "F3": {
+      "reviewer_1": { "value": "gaps_flagged", "type": "categorical_commitment" },
+      "reviewer_2": { "value": "gaps_flagged", "type": "categorical_commitment" },
+      "reviewer_3": { "value": "appropriate", "type": "categorical_commitment" }
+    }
+  },
+  "critique_quotes": [
+    { "id": "q1", "reviewer": "reviewer_1", "factor": "F2", "polarity": "weakness",
+      "quote": "The proposed single-cell experiments will require additional expertise or resources beyond what the sponsor's laboratory documents." },
+    { "id": "q2", "reviewer": "reviewer_2", "factor": "F3", "polarity": "weakness",
+      "quote": "It is not stated how the research will be funded across the final two years of the fellowship period." },
+    { "id": "q3", "reviewer": "reviewer_3", "factor": "F3", "polarity": "weakness",
+      "quote": "The sponsor's record of trainee outcomes is not provided; prior trainees and their current positions are not listed." }
+  ],
+  "located_excerpts": [
+    { "id": "x1", "source": "application", "section": "Sponsor and Training Environment",
+      "excerpt": "My laboratory is fully equipped for the proposed studies, and the candidate will have access to the imaging and sequencing cores of the department." }
+  ],
+  "n_items": 15,
+  "n_warnings": 0
+}

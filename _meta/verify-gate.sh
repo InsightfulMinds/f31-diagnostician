@@ -226,7 +226,7 @@ while IFS= read -r f; do
   head -2 "$f" | grep -q 'RECONSTRUCTED' || { fail "$f lacks the RECONSTRUCTED label in its first 2 lines"; bad=1; }
 done < <(find _shared/examples/reconstructed -type f | sort)
 [ "$bad" = 0 ] && pass "every file under examples/reconstructed carries the label on line 1"
-PHRASES=("NAKAMURA" "OKONKWO" "Enthusiasm among the reviewers was moderate" "IMM 210 Advanced Immunology" "mucosal immunology" "strong field this cycle")
+PHRASES=("NAKAMURA" "OKONKWO" "Enthusiasm among the reviewers was moderate" "IMM 210 Advanced Immunology" "mucosal immunology" "strong field this cycle" "LINDQVIST" "OYELARAN" "KOVACS" "reads like an R01 scaled" "trainee outcomes is not provided" "yielding a validated hit" "fiber photometry" "imaging and sequencing cores" "dominant efflux transporter")
 leak=0
 for p in "${PHRASES[@]}"; do
   while IFS= read -r hit; do
@@ -312,7 +312,9 @@ echo "=== 12. Submission README ==="
 if [ -f README.md ]; then
   grep -qF '34/39' README.md && grep -qF '29/39' README.md && pass "README carries the accuracy trade sentence" || fail "README lacks the 34/39 vs 29/39 trade"
   grep -qF '97.1' README.md && grep -qF '95.2' README.md && pass "README carries both savings figures" || fail "README lacks the savings figures"
-  grep -qiE 'pending Sean' README.md && pass "README marks cohort/threshold as pending confirmation" || fail "README asserts cohort/threshold as settled"
+  # cohort was locked to Technical at the public-artifact pass (commit 50d33ee);
+  # the old check required a "pending Sean" marker that the lock deliberately removed.
+  grep -qE '^Cohort: Technical\.' README.md && pass "README states the locked cohort (Technical)" || fail "README missing the locked cohort line"
   grep -q '## GAPS' README.md && pass "README has a GAPS section" || fail "README has no GAPS section"
 else
   fail "README.md missing"
