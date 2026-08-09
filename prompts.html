@@ -99,10 +99,17 @@
   <div class="prompt">A horizontal med-school timeline on white: four navy year markers labeled M1, M2, M3, M4, extended by a bracketed segment labeled PhD PHASE for dual-degree students. Three gold callouts anchor to it: T35 arrow pointing at the summer gap after M1, labeled "summer research block". F30 bracket spanning from M1 across the PhD phase, labeled "funds the full dual degree". F31 bracket over the PhD phase only, labeled "PhD phase, dual-degree", marked with a small gold flag reading "PROVEN". Below the timeline, one warning motif in navy: a small calendar icon with one year crossed out in gold, captioned "a misread critique costs a resubmission cycle". Clean, sparse, generous spacing.</div>
 </section>
 
+<section>
+  <h2><span class="no">07</span>Parallax band photo (rights-clean replacement)</h2>
+  <p class="meta">Output: <code>assets/med-students.webp</code> &middot; 3:2, min 1800px wide &middot; full-bleed parallax band mid-page. Replaces a Getty placeholder that must NOT ship publicly. Ignore the flat-vector style block for this one; it is the kit's only photograph.</p>
+  <div class="prompt">Photorealistic editorial photograph: a small group of medical students in blue scrubs walking together down a bright modern hallway with tall windows on the left, warm natural light, candid mid-conversation energy, notebooks and stethoscopes in hand. Diverse group, no one looking at the camera. Shallow depth of field, soft morning tones. Composition keeps the upper third relatively calm and uncluttered, since a dark navy overlay and white headline text will sit on top. No hospital signage, no readable name badges, no logos, no text anywhere in the image.</div>
+</section>
+
 <div class="checklist">
   <h2>Completeness check (run after assets are approved)</h2>
   <ol>
-    <li>Six files exist in <code>assets/</code> with the exact names above, none zero-byte.</li>
+    <li>Seven files exist in <code>assets/</code> with the exact names above, none zero-byte.</li>
+    <li>The Getty placeholder photo is gone: the shipped <code>med-students.webp</code> is the generated or licensed version, and the photo credit line on <code>index.html</code> matches whichever it is.</li>
     <li>Every image renders in both the navy #1C2D5E and gold #E8A820 family. An off-palette asset gets regenerated, not color-corrected.</li>
     <li>All award codes spell-check against the page: F30, F31, F32, K01, K08, K12, K23, K24, K99/R00, R01, R25, T32, T35. No invented codes.</li>
     <li>Spec-sheet numbers match the table on <code>index.html</code> line for line.</li>

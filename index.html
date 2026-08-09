@@ -120,6 +120,22 @@
   code { background:var(--wash); border:1px solid var(--line); padding:.1rem .4rem;
          border-radius:5px; font-size:.86em; }
 
+  /* parallax bands */
+  .band { position:relative; margin:4.5rem calc(50% - 50vw) 0; padding:7rem 1.4rem;
+          background-image:linear-gradient(rgba(21,35,75,.78), rgba(21,35,75,.78)), url("assets/med-students.webp");
+          background-size:cover; background-position:center 30%; background-attachment:fixed; }
+  .band-inner { max-width:860px; margin:0 auto; color:#fff; }
+  .band .stat { font-family:"Fraunces", serif; font-weight:700; color:#fff;
+                font-size:clamp(1.6rem, 4vw, 2.5rem); line-height:1.2; max-width:38rem; }
+  .band .stat em { font-style:normal; color:var(--gold); }
+  .band p { margin-top:.9rem; max-width:38rem; color:#c9d2e8; }
+  .band .src { display:block; margin-top:1.2rem; font-size:.72rem; letter-spacing:.06em;
+               text-transform:uppercase; color:#8fa0c8; }
+  .band .src a { color:#8fa0c8; }
+  @media (max-width:900px), (prefers-reduced-motion:reduce) {
+    .band { background-attachment:scroll; padding:5rem 1.4rem; }
+  }
+
   footer { margin-top:5rem; border-top:3px solid var(--navy); padding:1.3rem 0 0;
            color:var(--dim); font-size:.88rem; display:flex; justify-content:space-between;
            flex-wrap:wrap; gap:.5rem; }
@@ -203,6 +219,14 @@
   </div>
   <div class="why"><b>Why it matters</b><span>The rubric is encoded and machine-validated, so the diagnosis speaks in the same three factors the reviewers scored.</span></div>
 </section>
+
+<div class="band" role="img" aria-label="Medical students walking a bright hallway in blue scrubs">
+  <div class="band-inner">
+    <div class="stat">Med school applications <em>soared</em> to record highs, and the biggest, most diverse first-year classes ever followed.</div>
+    <p>More students entering the pipeline means more fellowship applications, more critiques coming back, and more people staring at a summary statement wondering what went wrong.</p>
+    <span class="src">Photo: Getty Images, via <a href="https://www.forbes.com/sites/michaeltnietzel/2021/12/09/whats-behind-the-soaring-applications-to-medical-school/">Forbes, Dec 2021</a></span>
+  </div>
+</div>
 
 <section class="prose">
   <h2><span class="no">05</span>Where this carries over</h2>
