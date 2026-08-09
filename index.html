@@ -15,6 +15,7 @@
   }
   * { box-sizing:border-box; margin:0; }
   html { scroll-behavior:smooth; }
+  html, body { overflow-x:clip; }
   body { background:var(--white); color:var(--ink);
          font:17px/1.65 "Source Sans 3", -apple-system, Segoe UI, sans-serif; }
   h1,h2,h3 { font-family:"Fraunces", Georgia, serif; color:var(--navy); }
@@ -24,7 +25,16 @@
   section { margin-top:4.2rem; }
 
   /* hero */
-  .hero { padding:4.5rem 0 3rem; border-bottom:3px solid var(--navy); position:relative; }
+  .hero { position:relative; margin:0 calc(50% - 50vw); padding:5.5rem max(1.4rem, calc(50vw - 430px)) 3.5rem;
+          border-bottom:3px solid var(--gold);
+          background-image:linear-gradient(100deg, rgba(21,35,75,.92) 30%, rgba(21,35,75,.55)), url("assets/med-students.jpg");
+          background-size:cover; background-position:center 35%; }
+  .hero h1, .hero .lede { color:#fff; }
+  .hero h1 em { color:var(--gold); }
+  .hero .lede { color:#dbe2f2; }
+  .hero .kicker { background:var(--gold); color:var(--navy-deep); }
+  .hero .kicker::after { color:var(--navy-deep); }
+  .hero .hits span { background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.25); }
   .kicker { display:inline-flex; align-items:center; gap:.55rem; background:var(--navy); color:#fff;
             font-weight:600; font-size:.8rem; letter-spacing:.08em; text-transform:uppercase;
             padding:.35rem .8rem .35rem .9rem; }
@@ -124,11 +134,11 @@
   body::before, body::after {
     content:""; position:fixed; top:0; bottom:0; width:34px; z-index:0; pointer-events:none;
     background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="34" height="72" viewBox="0 0 34 72"><path d="M8 12 L24 36 L8 60" fill="none" stroke="%231C2D5E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.10"/><path d="M8 30 L14 36 L8 42" fill="none" stroke="%23E8A820" stroke-width="2" stroke-linecap="round" opacity="0.35"/></svg>');
-    background-repeat:repeat-y; background-position:center top;
+    background-repeat:repeat-y; background-position:center top; background-size:100% auto;
   }
-  body::before { left:2vw; }
-  body::after  { right:2vw; transform:scaleX(-1); }
-  @media (max-width:1099px) { body::before, body::after { display:none; } }
+  body::before { left:0; }
+  body::after  { right:0; transform:scaleX(-1); }
+  @media (max-width:1099px) { body::before, body::after { width:18px; } }
   @media (prefers-reduced-motion:no-preference) {
     body::before { animation:railL 22s linear infinite; }
     body::after  { animation:railL 22s linear infinite; }
@@ -149,10 +159,32 @@
     .band { background-attachment:scroll; padding:5rem 1.4rem; }
   }
 
-  .diagram-fig { margin:1.8rem 0; border-radius:10px; overflow:hidden; border:2px solid var(--navy); background:var(--white); box-shadow:0 4px 18px rgba(28, 45, 94, 0.06); }
+  .diagram-fig { margin:1.8rem 0; border-radius:10px; overflow:hidden; border:2px solid var(--navy); background:var(--white);  }
   .diagram-fig img { display:block; width:100%; height:auto; }
-  .hero-fig { margin-top:1.8rem; border-radius:12px; overflow:hidden; border:2px solid var(--navy); background:var(--white); box-shadow:0 6px 24px rgba(28, 45, 94, 0.08); }
+  .hero-fig { margin-top:1.8rem; border-radius:12px; overflow:hidden; border:2px solid var(--navy); background:var(--white);  }
   .hero-fig img { display:block; width:100%; height:auto; }
+
+
+  /* motion defaults */
+  .repo-cta, .chip, .hits span { transition:background-color .2s ease, color .2s ease, border-color .2s ease, transform .2s ease; }
+  .repo-cta:hover { transform:translateY(-2px); }
+  @media (prefers-reduced-motion:no-preference) {
+    .reveal { opacity:0; transform:translateY(22px); transition:opacity .6s ease-out, transform .6s ease-out; }
+    .reveal.in { opacity:1; transform:none; }
+    .diagram-fig.reveal, .hero-fig.reveal { transform:translateY(28px) scale(.985); }
+    .diagram-fig.reveal.in, .hero-fig.reveal.in { transform:none; }
+    .why.reveal { transform:translateX(-18px); }
+    .why.reveal.in { transform:none; }
+    .hits span { opacity:0; transform:translateY(8px); }
+    .hits.in span { opacity:1; transform:translateY(0); transition:opacity .45s ease-out, transform .45s ease-out; }
+    .hits.in span:nth-child(2) { transition-delay:.09s; }
+    .hits.in span:nth-child(3) { transition-delay:.18s; }
+    .hits.in span:nth-child(4) { transition-delay:.27s; }
+    .band .band-inner > * { opacity:0; transform:translateY(16px); transition:opacity .7s ease-out, transform .7s ease-out; }
+    .band.in .band-inner > * { opacity:1; transform:none; }
+    .band.in .band-inner > *:nth-child(2) { transition-delay:.12s; }
+    .band.in .band-inner > *:nth-child(3) { transition-delay:.24s; }
+  }
 
   footer { margin-top:5rem; border-top:3px solid var(--navy); padding:1.3rem 0 0;
            color:var(--dim); font-size:.88rem; display:flex; justify-content:space-between;
@@ -179,15 +211,15 @@
     <span>Refuses to guess</span>
     <span>78-check verified</span>
   </div>
-  <div class="hero-fig">
-    <img src="assets/hero.jpg" alt="Wide editorial illustration: stack of grant application pages with gold magnifying glass highlighting the primary cause card" width="100%" loading="eager">
-  </div>
 </header>
 
 <section class="prose">
   <h2><span class="no">01</span>First, what is an F31?</h2>
   <p>The F31 is a fellowship from the National Institutes of Health that pays for a PhD student's dissertation research, usually two to three years of stipend and tuition support. Around 1,800 of them are active at any time, and the top ten universities hold about 30% of those awards.</p>
   <p>Applying is a paperwork gauntlet with strict page limits, and a panel of reviewers scores the result. Most applications are not funded. When yours isn't, you get back a critique document and a score, and it is on you to figure out what actually went wrong. That gap is what this project attacks.</p>
+  <div class="hero-fig">
+    <img src="assets/hero.jpg" alt="Wide editorial illustration: stack of grant application pages with gold magnifying glass highlighting the primary cause card" width="100%" loading="eager">
+  </div>
   <div class="why"><b>Why it matters</b><span>Most F31s are not funded, and the critique document is the only feedback that comes back. Decoding it correctly is the entire next move.</span></div>
 </section>
 
@@ -283,5 +315,23 @@
 </footer>
 
 </main>
+
+<script>
+(function(){
+  var m = matchMedia('(prefers-reduced-motion: reduce)');
+  var els = document.querySelectorAll('section, .diagram-fig, .hero-fig, .why, .medcall, .scorepath, .band, .hits');
+  els.forEach(function(e){ if (!e.classList.contains('band') && !e.classList.contains('hits')) e.classList.add('reveal'); });
+  if (m.matches || !('IntersectionObserver' in window)) {
+    els.forEach(function(e){ e.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>
 </body>
 </html>
