@@ -145,8 +145,7 @@
     @keyframes railL { from { background-position-y:0; } to { background-position-y:72px; } }
   }
   .band { position:relative; margin:4.5rem calc(50% - 50vw) 0; padding:7rem 1.4rem;
-          background-image:linear-gradient(rgba(21,35,75,.62), rgba(21,35,75,.62)), url("assets/med-students.jpg");
-          background-size:cover; background-position:center 30%; background-attachment:fixed; }
+          background:var(--navy-deep) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="34" height="72" viewBox="0 0 34 72"><path d="M8 12 L24 36 L8 60" fill="none" stroke="%23ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.05"/></svg>') repeat; }
   .band-inner { max-width:860px; margin:0 auto; color:#fff; }
   .band .stat { font-family:"Fraunces", serif; font-weight:700; color:#fff;
                 font-size:clamp(1.6rem, 4vw, 2.5rem); line-height:1.2; max-width:38rem; }
@@ -263,7 +262,6 @@
   <div class="band-inner">
     <div class="stat">Med school applications <em>soared</em> to record highs, and the biggest, most diverse first-year classes ever followed.</div>
     <p>More students entering the pipeline means more fellowship applications, more critiques coming back, and more people staring at a summary statement wondering what went wrong.</p>
-    <span class="src">Photo: Rights-clean editorial photograph via <a href="prompt-kit/prompts.html">Prompt Kit (07-med-students-photo)</a></span>
   </div>
 </div>
 
@@ -310,7 +308,7 @@
 </section>
 
 <footer>
-  <span><b>The F31 Diagnostician</b> &middot; built August 2026</span>
+  <span><b>The F31 Diagnostician</b> &middot; &copy; 2026 InsightfulMinds. All rights reserved.</span>
   <span>Example cases in the repo are reconstructed, labeled as such on line one.</span>
 </footer>
 
