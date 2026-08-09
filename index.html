@@ -135,7 +135,7 @@
     @keyframes railL { from { background-position-y:0; } to { background-position-y:72px; } }
   }
   .band { position:relative; margin:4.5rem calc(50% - 50vw) 0; padding:7rem 1.4rem;
-          background-image:linear-gradient(rgba(21,35,75,.78), rgba(21,35,75,.78)), url("assets/med-students.webp");
+          background-image:linear-gradient(rgba(21,35,75,.62), rgba(21,35,75,.62)), url("assets/med-students.jpg");
           background-size:cover; background-position:center 30%; background-attachment:fixed; }
   .band-inner { max-width:860px; margin:0 auto; color:#fff; }
   .band .stat { font-family:"Fraunces", serif; font-weight:700; color:#fff;
@@ -148,6 +148,11 @@
   @media (max-width:900px), (prefers-reduced-motion:reduce) {
     .band { background-attachment:scroll; padding:5rem 1.4rem; }
   }
+
+  .diagram-fig { margin:1.8rem 0; border-radius:10px; overflow:hidden; border:2px solid var(--navy); background:var(--white); box-shadow:0 4px 18px rgba(28, 45, 94, 0.06); }
+  .diagram-fig img { display:block; width:100%; height:auto; }
+  .hero-fig { margin-top:1.8rem; border-radius:12px; overflow:hidden; border:2px solid var(--navy); background:var(--white); box-shadow:0 6px 24px rgba(28, 45, 94, 0.08); }
+  .hero-fig img { display:block; width:100%; height:auto; }
 
   footer { margin-top:5rem; border-top:3px solid var(--navy); padding:1.3rem 0 0;
            color:var(--dim); font-size:.88rem; display:flex; justify-content:space-between;
@@ -174,6 +179,9 @@
     <span>Refuses to guess</span>
     <span>78-check verified</span>
   </div>
+  <div class="hero-fig">
+    <img src="assets/hero.jpg" alt="Wide editorial illustration: stack of grant application pages with gold magnifying glass highlighting the primary cause card" width="100%" loading="eager">
+  </div>
 </header>
 
 <section class="prose">
@@ -186,6 +194,8 @@
 <section>
   <h2><span class="no">02</span>What the diagnostician does</h2>
   <p class="prose">You hand it an application plus its critique. It runs five stages, each a folder with a written contract for what comes in and what goes out:</p>
+  <div class="diagram-fig">
+  </div>
   <ol class="stages">
     <li><div><b>Intake.</b> A questionnaire pins down the basics: which institute, first submission or resubmission, what score came back.</div></li>
     <li><div><b>Extract.</b> Pulls the claims, aims, and reviewer complaints out of the documents into structured records.</div></li>
@@ -199,35 +209,19 @@
 <section>
   <h2><span class="no">03</span>The paperwork it has to understand</h2>
   <p class="prose">Part of why diagnosis is even possible: the F31 is rigidly structured. Every component has a hard length limit, so complaints can be traced to a specific, bounded document. The bars show each limit relative to the largest.</p>
-  <div class="sheet">
-    <div class="sheet-head"><h3>F31 application components</h3><span>Length limits</span></div>
-    <table>
-      <tr><td>Abstract<span class="bar" style="width:8%"></span></td><td class="lim">30 lines of text</td></tr>
-      <tr><td>Project Narrative<span class="bar" style="width:4%"></span></td><td class="lim">3 sentences</td></tr>
-      <tr><td>Candidate Biosketch<span class="bar" style="width:83%"></span></td><td class="lim">5 pages</td></tr>
-      <tr><td>Sponsor Biosketch<span class="bar" style="width:83%"></span></td><td class="lim">5 pages</td></tr>
-      <tr><td>Candidate Goals, Preparedness, and Potential<span class="bar" style="width:50%"></span></td><td class="lim">3 pages</td></tr>
-      <tr><td>Training Activities and Timelines<span class="bar" style="width:50%"></span></td><td class="lim">3 pages</td></tr>
-      <tr><td>Research Training Project Specific Aims<span class="bar" style="width:17%"></span></td><td class="lim">1 page</td></tr>
-      <tr><td>Research Training Project Strategy<span class="bar" style="width:100%"></span></td><td class="lim">6 pages</td></tr>
-      <tr><td>Sponsor(s) Commitment<span class="bar" style="width:100%"></span></td><td class="lim">6 pages</td></tr>
-      <tr><td>Letters of Support from Collaborators<span class="bar" style="width:100%"></span></td><td class="lim">6 pages</td></tr>
-      <tr><td>3&ndash;5 Reference Letters<span class="bar" style="width:33%"></span></td><td class="lim">2 pages each</td></tr>
-    </table>
-    <div class="note">Biosketches are the NIH-format CV. Limits per the current NIH fellowship application guide.</div>
+  <div class="diagram-fig">
+    <img src="assets/spec-sheet.jpg" alt="F31 Application Components spec sheet showing length limits for Abstract, Biosketches, Research Strategy, and Reference Letters" width="100%" loading="lazy">
   </div>
-  <div class="why"><b>Why it matters</b><span>Hard limits mean every reviewer complaint points at a specific, bounded document. That is what makes automated diagnosis tractable at all.</span></div>
+    <div class="why"><b>Why it matters</b><span>Hard limits mean every reviewer complaint points at a specific, bounded document. That is what makes automated diagnosis tractable at all.</span></div>
 </section>
 
 <section>
   <h2><span class="no">04</span>How reviewers score it</h2>
   <p class="prose">Since January 2025, fellowship review uses a three-factor rubric. The diagnostician encodes this rubric as a schema-checked JSON file, and its verification gate validates the encoding on every run.</p>
-  <div class="rubric">
-    <div class="fcard"><span class="fid">F1</span><h3>Candidate's preparedness and potential</h3><p>Scored 1 to 9. Lower is better.</p></div>
-    <div class="fcard"><span class="fid">F2</span><h3>Research training plan</h3><p>Scored 1 to 9. Lower is better.</p></div>
-    <div class="fcard"><span class="fid">F3</span><h3>Sponsor and institutional commitment</h3><p>Not numbered. Rated "appropriate" or flagged for gaps.</p></div>
+  <div class="diagram-fig">
+    <img src="assets/rubric.jpg" alt="Scorecard set for F1 Candidate Preparedness, F2 Research Plan, and F3 Sponsor Commitment leading to Impact Score percentile payline decision" width="100%" loading="lazy">
   </div>
-  <div class="scorepath">
+    <div class="scorepath">
     <b>From scores to a decision:</b> discussed applications get an overall impact score from 10 (best) to 90, which converts to a percentile against the study section's recent history. Each NIH institute funds applications inside its payline, which for fellowships has typically run somewhere in the 15th to 25th percentile band. Outside the payline is the outcome this tool exists to explain.
   </div>
   <div class="why"><b>Why it matters</b><span>The rubric is encoded and machine-validated, so the diagnosis speaks in the same three factors the reviewers scored.</span></div>
@@ -237,7 +231,7 @@
   <div class="band-inner">
     <div class="stat">Med school applications <em>soared</em> to record highs, and the biggest, most diverse first-year classes ever followed.</div>
     <p>More students entering the pipeline means more fellowship applications, more critiques coming back, and more people staring at a summary statement wondering what went wrong.</p>
-    <span class="src">Photo: Getty Images, via <a href="https://www.forbes.com/sites/michaeltnietzel/2021/12/09/whats-behind-the-soaring-applications-to-medical-school/">Forbes, Dec 2021</a></span>
+    <span class="src">Photo: Rights-clean editorial photograph via <a href="prompt-kit/prompts.html">Prompt Kit (07-med-students-photo)</a></span>
   </div>
 </div>
 
@@ -246,46 +240,17 @@
   <p>Nothing in the pipeline is F31-specific except two data files: the failure-mode table and the rubric. The rubric file already declares itself valid for the F30, F31, F32, and F33, because NIH moved all four fellowship types onto the same three-factor review in 2025. Swapping the two data files retargets the whole system.</p>
   <p>NIH funds an entire research career as a relay of awards, stage by stage. Each handoff is its own application, its own review, its own way to be rejected with a critique in hand. That makes the whole pathway addressable:</p>
 
-  <div class="pathwrap">
-    <div class="pathway">
-      <div class="pstage">
-        <h3>Undergraduate</h3>
-        <span class="chip inst">R25 education programs</span>
-        <span class="chip inst">Summer internships</span>
-      </div>
-      <div class="pstage">
-        <h3>Graduate / medical school</h3>
-        <span class="chip you">F31 <small>proven here</small></span>
-        <span class="chip">F30 dual-degree</span>
-        <span class="chip inst">T32 training grant</span>
-        <span class="chip inst">T35 short-term</span>
-      </div>
-      <div class="pstage">
-        <h3>Postdoctoral</h3>
-        <span class="chip">F32 fellowship</span>
-        <span class="chip">K99/R00 fast-track</span>
-      </div>
-      <div class="pstage">
-        <h3>Transition / junior faculty</h3>
-        <span class="chip">K01 research</span>
-        <span class="chip">K08, K23 clinical</span>
-        <span class="chip inst">K12 institutional</span>
-      </div>
-      <div class="pstage">
-        <h3>Faculty / tenured</h3>
-        <span class="chip">R01 investigator award</span>
-        <span class="chip">K24 mid-career mentoring</span>
-      </div>
-    </div>
-    <div class="pathlegend">
-      <span><i class="sw"></i> Individual award: one applicant, one critique. Direct fit for the pipeline.</span>
-      <span><i class="sw instsw"></i> Institutional award: a program applies. Same shape, bigger documents.</span>
-    </div>
+  <div class="diagram-fig">
+    <img src="assets/pathway.jpg" alt="NIH Research Career Pathway Relay timeline showing Undergraduate through Faculty award mechanisms" width="100%" loading="lazy">
   </div>
 
+  
   <div class="medcall">
     <h3>Where it helps most: med school students</h3>
     <p>The medical-school column is the busiest handoff on that map, and the one this system is built closest to. If you're an MD or MD/PhD student, the awards that fund you are:</p>
+    <div class="diagram-fig med-figure">
+      <img src="assets/med-timeline.jpg" alt="Medical school timeline detailing T35 summer research block, F30 dual degree, and F31 PhD phase timing" width="100%" loading="lazy">
+    </div>
     <ul>
       <li><b>T35</b> pays for the summer research block, usually after first year. Your school holds the grant; you apply internally.</li>
       <li><b>F30</b> funds the full MD/PhD dual degree, both phases. Applied for directly, reviewed on the same three-factor rubric this tool already encodes.</li>
