@@ -32,7 +32,7 @@ argument the three reviewers each looked for is not in the document.
 ## Why not the other modes
 
 mode-05-generic-training-plan is present and supported by excerpt x2, but
-carries one quote — below the two-quote threshold — so it does not qualify
+carries one quote, below the two-quote threshold, so it does not qualify
 as a candidate. It is noted only because `ranking-opinion.md` rule 2 places
 the generic plan downstream of the same omission mode-06 names. mode-06 is
 primary, and the only mode that met threshold. mode-08-infeasible-timeline
