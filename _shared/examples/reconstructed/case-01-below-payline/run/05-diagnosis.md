@@ -29,13 +29,14 @@ research career in mucosal immunology."
 The excerpt enumerates the record and asserts the goal. The connective
 argument the three reviewers each looked for is not in the document.
 
-## Why not the other qualifying candidate
+## Why not the other modes
 
 mode-05-generic-training-plan is present and supported by excerpt x2, but
-carries one quote against mode-06's three, and by `ranking-opinion.md`
-rule 2 the generic plan is downstream of the same omission. mode-06 is
-primary. mode-08-infeasible-timeline did not qualify: one quote, no moved
-cell, no located excerpt.
+carries one quote — below the two-quote threshold — so it does not qualify
+as a candidate. It is noted only because `ranking-opinion.md` rule 2 places
+the generic plan downstream of the same omission mode-06 names. mode-06 is
+primary, and the only mode that met threshold. mode-08-infeasible-timeline
+also did not qualify: one quote, no moved cell, no located excerpt.
 
 Threshold applied: >= 2 verbatim quotes AND >= 1 moved grid cell traced to
 >= 1 located excerpt. mode-06 met it with 3 quotes, F1, and x1.
